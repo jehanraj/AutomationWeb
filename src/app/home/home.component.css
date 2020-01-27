@@ -1,0 +1,13 @@
+.body-content{
+    border: 1px solid #e2e2e2;
+    margin-top: 120px;
+    margin-left: 20px;
+    padding: 50px;
+    width: 95%;
+    border-radius: 4px;
+}
+.section-body {
+    padding: 16px;
+    border-bottom: 1px solid #e2e2e2;
+    background-color: white;
+}
