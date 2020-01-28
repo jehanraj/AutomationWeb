@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class HomeService {
+export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  loginUser() {
-    return this.http.get(environment.baseurl + 'dropdown/getAllInterfaceNames');
+  loginUser(user: any) {
+    return this.http.post(environment.baseurl + 'dropdown/getAllInterfaceNames', user);
   }
   getApplications() {
     return this.http.get(environment.baseurl + 'dropdown/getAllInterfaceNames');

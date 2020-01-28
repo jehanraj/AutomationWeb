@@ -30,28 +30,20 @@
 </section>
 <div class="container-fluid body-content">
   <form>
-    <div class="row">
-      <div class="col-2">
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="application">Application Name</label>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="form-group">
           <select class="form-control" id="application">
-            <option>Default select</option>
+            <option *ngFor="let app of applicationsList">Default select</option>
           </select>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="screen">Screen Name</label>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="form-group">
           <select class="form-control" id="screen">
-            <option>Default select</option>
+              <option *ngFor="let screen of screensList">Default select</option>
           </select>
         </div>
       </div>
