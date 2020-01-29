@@ -16,4 +16,7 @@ export class AppService {
   getScreens() {
     return this.http.get(environment.baseurl + 'dropdown/getAllInterfaceNames');
   }
+  getApplicationScreens() {
+    return this.http.get(environment.baseurl + 'loginSubmit');
+  }
 }

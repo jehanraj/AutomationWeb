@@ -1,41 +1,13 @@
-<section>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <img src="../../assets/headericon.png" width="42" height="42">
-        <a class="navbar-brand" href="#">Automated Testing Tool</a>
-        <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Settings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</section>
-<div class="container-fluid body-content">
+<app-header></app-header>
+<div class="container body-content">
   <form>
     <div class="row justify-content-center">
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="application">Application Name</label>
           <select class="form-control" id="application">
-            <option *ngFor="let app of applicationsList">Default select</option>
+            <option *ngFor="let app of applicationsList | async">Default select</option>
+            <option *ngFor="let app of apps">{{app}}</option>
           </select>
         </div>
       </div>
@@ -43,7 +15,8 @@
         <div class="form-group">
           <label for="screen">Screen Name</label>
           <select class="form-control" id="screen">
-              <option *ngFor="let screen of screensList">Default select</option>
+              <option *ngFor="let screen of screensList | async">Default select</option>
+              <option *ngFor="let app of sr">{{app}}</option>
           </select>
         </div>
       </div>
@@ -51,7 +24,7 @@
     <div class="row"></div>
     <div class="row justify-content-center">
       <div class="col-2">
-        <button type="submit" class="btn btn-outline-success">Start Testing</button>
+        <button type="submit" (click)="runTest()" class="btn btn-blue">Start Testing</button>
       </div>
     </div>
   </form>
