@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
+import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-suite-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     HomeComponent,
     SignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    TestSuiteMaintenanceComponent
   ],
   imports: [
     BrowserModule,

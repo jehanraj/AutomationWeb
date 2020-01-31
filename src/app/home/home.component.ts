@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
   private applicationsList: Observable<Object>;
   private screensList: Observable<Object>;
   private apps: string[];
   private sr: string[];
+  appName: string = "test";
+  screenName: string = "scr";
 
   constructor(private app: AppService) { }
 
@@ -33,6 +35,10 @@ export class HomeComponent implements OnInit {
   }
 
   runTest() {
-    console.log('test running');
+    const data = { app: '', screen: '' };
+    this.app.startTesting(data).subscribe(date => {
+      console.log('test running');
+    });
+
   }
 }
