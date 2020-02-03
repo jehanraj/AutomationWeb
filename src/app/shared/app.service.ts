@@ -17,8 +17,8 @@ export class AppService {
     return this.http.get<Lookup>(environment.baseurl + 'applicationNames');
   }
 
-  getScreens(): Observable<Lookup> {
-    return this.http.get<Lookup>(environment.baseurl + 'screens');
+  getScreens(): Observable<any> {
+    return this.http.get(environment.baseurl + 'getAllScreenDetails');
   }
 
   getApplicationScreens() {

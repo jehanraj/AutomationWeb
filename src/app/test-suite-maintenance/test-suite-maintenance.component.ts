@@ -3,6 +3,7 @@ import { AppService } from '../shared/app.service';
 import { Observable } from 'rxjs';
 import { Lookup } from '../shared/app.model';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-test-suite-maintenance',
@@ -14,16 +15,25 @@ export class TestSuiteMaintenanceComponent implements OnInit {
   appName: string;
   screenName: string;
   applicationList: Observable<Lookup>;
-  screenList: Observable<Lookup>;
+  screenList: any;
+  screenMap: any;
+  fileName: string;
+  url;
 
-  constructor(private app: AppService, private toastr: ToastrService) { }
+  constructor(private app: AppService, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.applicationList = this.app.getApplications();
-    this.screenList = this.app.getScreens();
-
+    this.app.getScreens().subscribe(data => {
+      this.screenMap = data;
+    });
+    this.downloadTemplate();
   }
 
+  updateScreensList() {
+    this.screenName = '';
+    this.screenList = this.screenMap[this.appName];
+  }
   uploadtestsuite() {
     this.app.postTestSuite(this.appName, this.screenName, this.testSuiteFile).subscribe(data => {
       console.log(data);
@@ -39,8 +49,8 @@ export class TestSuiteMaintenanceComponent implements OnInit {
   downloadTemplate() {
     this.app.downloadTemplate().subscribe((data) => {
       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-      const fileURL = URL.createObjectURL(file);
-      window.open(fileURL);
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+      this.fileName = 'TestSuite.xlsx';
     });
   }
 }
