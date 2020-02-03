@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseurl: 'http://192.168.100.245:8081/TestAutomation/'
-  //baseurl: 'http://localhost:8081/TestAutomation/'
+  //baseurl: 'http://192.168.100.245:8081/TestAutomation/'
+  baseurl: 'http://localhost:8081/TestAutomation/'
 };
 
 /*

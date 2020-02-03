@@ -12,27 +12,20 @@ export class AppService {
   loginUser(user: any) {
     return this.http.post(environment.baseurl + 'loginSubmit', user);
   }
+
   getApplications(): Observable<Lookup> {
     return this.http.get<Lookup>(environment.baseurl + 'applicationNames');
   }
-  
-  getScreens() {
-    return this.http.get(environment.baseurl + 'dropdown/getAllInterfaceNames');
+
+  getScreens(): Observable<Lookup> {
+    return this.http.get<Lookup>(environment.baseurl + 'screens');
   }
+
   getApplicationScreens() {
     return this.http.get(environment.baseurl + 'loginSubmit');
   }
-  postTestSuite(app: string, screen: string, fileToUpload: File) {
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    formData.append('appName', appName);
-    formData.append('appURL', appURL);
-    formData.append('appBrowser', appBrowser);
-    return this.http.post(environment.baseurl + 'updateApplicationDetails', formData)
-      .pipe((data) => data);
-  }
-  
-  postApplicationDetails(appName: string, appURL: string, appBrowser: string,fileToUpload: File) {
+
+  postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('appName', appName);
@@ -42,7 +35,21 @@ export class AppService {
       .pipe((data) => data);
   }
 
+  postTestSuite(app: string, screen: string, fileToUpload: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    formData.append('application', app);
+    formData.append('screen', screen);
+    return this.http.post(environment.baseurl + 'uploadTestSuite', formData)
+      .pipe((data) => data);
+  }
+
   startTesting(data: any) {
     return this.http.post(environment.baseurl + 'startTest', data);
   }
+
+  downloadTemplate() {
+    return this.http.get(environment.baseurl + 'template', { responseType: 'blob' });
+  }
+
 }
