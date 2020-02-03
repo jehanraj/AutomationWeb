@@ -44,8 +44,8 @@ export class AppService {
       .pipe((data) => data);
   }
 
-  startTesting(data: any) {
-    return this.http.post(environment.baseurl + 'startTest', data);
+  startTesting(appName: string, screenName: string) {
+    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName, {});
   }
 
   downloadTemplate() {
