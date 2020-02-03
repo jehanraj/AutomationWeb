@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-suite-maintenance.component';
+import { ApplicationDetailsComponent } from './application-details/application-details.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-sui
     HomeComponent,
     SignupComponent,
     HeaderComponent,
-    TestSuiteMaintenanceComponent
+    TestSuiteMaintenanceComponent,
+    ApplicationDetailsComponent
   ],
   imports: [
     BrowserModule,
+    AgGridModule.withComponents([]),
     AppRoutingModule,
     NgbModule,
     FormsModule,

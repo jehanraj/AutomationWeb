@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Lookup } from './app.model';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -11,9 +12,10 @@ export class AppService {
   loginUser(user: any) {
     return this.http.post(environment.baseurl + 'loginSubmit', user);
   }
-  getApplications() {
-    return this.http.get(environment.baseurl + 'dropdown/getAllInterfaceNames');
+  getApplications(): Observable<Lookup> {
+    return this.http.get<Lookup>(environment.baseurl + 'applicationNames');
   }
+  
   getScreens() {
     return this.http.get(environment.baseurl + 'dropdown/getAllInterfaceNames');
   }
@@ -23,9 +25,20 @@ export class AppService {
   postTestSuite(app: string, screen: string, fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    formData.append('application', app);
-    formData.append('screen', screen);
-    return this.http.post(environment.baseurl + 'uploadTestSuite', formData)
+    formData.append('appName', appName);
+    formData.append('appURL', appURL);
+    formData.append('appBrowser', appBrowser);
+    return this.http.post(environment.baseurl + 'updateApplicationDetails', formData)
+      .pipe((data) => data);
+  }
+  
+  postApplicationDetails(appName: string, appURL: string, appBrowser: string,fileToUpload: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    formData.append('appName', appName);
+    formData.append('appURL', appURL);
+    formData.append('appBrowser', appBrowser);
+    return this.http.post(environment.baseurl + 'updateApplicationDetails', formData)
       .pipe((data) => data);
   }
 
