@@ -4,6 +4,8 @@ import { AppService } from '../shared/app.service';
 import { Lookup, Application } from '../shared/app.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-application-details',
@@ -18,6 +20,8 @@ export class ApplicationDetailsComponent implements OnInit {
   appName: string = "";
   appBrowser: string = "";
   message: string = "";
+  fileName: string;
+  url;
 
   columnDefs = [
     {headerName: 'Screen Name', field: 'screenName'}
@@ -31,10 +35,11 @@ export class ApplicationDetailsComponent implements OnInit {
   //   { make: 'Porsche', model: 'Boxter', price: 72000 }
   // ];
 
-  constructor(private app: AppService,private http: HttpClient) {}
+  constructor(private app: AppService,private http: HttpClient, private toastr: ToastrService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.loadApplications();
+    this.downloadTemplate();
   }
 
  loadApplications() {
@@ -71,8 +76,8 @@ export class ApplicationDetailsComponent implements OnInit {
   downloadTemplate(){
     this.http.get(environment.baseurl + 'downloadTemplate/', {responseType : 'blob'}).subscribe(data => {
        const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-       const fileURL = URL.createObjectURL(file);
-       window.open(fileURL);   
+       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+       this.fileName = 'ApplicationScreenDetails.xlsx';
     });
   }
 
