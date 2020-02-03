@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../shared/app.service';
 import { Observable } from 'rxjs';
+import { Lookup } from '../shared/app.model';
 
 @Component({
   selector: 'app-home',
@@ -9,33 +10,28 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  private applicationsList: Observable<Object>;
-  private screensList: Observable<Object>;
-  private apps: string[];
-  private sr: string[];
-  appName: string = "test";
-  screenName: string = "scr";
+  private applicationsList: Observable<Lookup>;
+  private screensList: Observable<Lookup>;
+  appName: string = 'test';
+  screenName: string = 'scr';
 
   constructor(private app: AppService) { }
 
   ngOnInit() {
     this.loadData();
   }
-  loadApplications() {
-    this.applicationsList = this.app.getApplications();
-  }
-  loadScreens() {
-    this.screensList = this.app.getScreens();
-  }
+
   loadData() {
-    this.app.getApplicationScreens().subscribe(data => {
-      this.apps = data['applicationNameList'];
-      this.sr = data['screenDetailsList'];
-    });
+    // this.app.getApplicationScreens().subscribe(data => {
+    //   this.apps = data['applicationNameList'];
+    //   this.sr = data['screenDetailsList'];
+    // });
+    this.applicationsList = this.app.getApplications();
+    this.screensList = this.app.getScreens();
   }
 
   runTest() {
-    const data = { app: '', screen: '' };
+    const data = { selectedScreenName: '', screen: '' };
     this.app.startTesting(data).subscribe(date => {
       console.log('test running');
     });

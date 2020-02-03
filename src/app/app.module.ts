@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-suite-maintenance.component';
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,12 @@ import { AgGridModule } from 'ag-grid-angular';
   imports: [
     BrowserModule,
     AgGridModule.withComponents([]),
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

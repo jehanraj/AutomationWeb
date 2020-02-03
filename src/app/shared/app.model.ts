@@ -1,6 +1,6 @@
 export interface Lookup {
-    id: number;
-    name: string;
+    id?: number;
+    name?: string;
 }
 
 export interface Application {
@@ -8,5 +8,5 @@ export interface Application {
     name: string;
     url: string;
     browser: string;
-    Sname: String;
+    Sname: string;
 }
