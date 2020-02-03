@@ -4,7 +4,6 @@ import { AppService } from '../shared/app.service';
 import { Lookup, Application } from '../shared/app.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-application-details',
@@ -32,7 +31,7 @@ export class ApplicationDetailsComponent implements OnInit {
   //   { make: 'Porsche', model: 'Boxter', price: 72000 }
   // ];
 
-  constructor(private app: AppService,private http: HttpClient,private toastr: ToastrService) {}
+  constructor(private app: AppService,private http: HttpClient) {}
 
   ngOnInit() {
     this.loadApplications();
@@ -54,12 +53,27 @@ export class ApplicationDetailsComponent implements OnInit {
   updateApplicationDetails() {
      this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser, this.screenNamesFile).subscribe(data => {
       console.log(data);
-      this.toastr.success(data.toString());
     });
     this.search();
   }
   handleFileInput(files: FileList) {
     this.screenNamesFile = files.item(0);
+  }
+
+  download(){
+    this.http.get(environment.baseurl + 'downloadExcel/' + this.appId, {responseType : 'blob'}).subscribe(data => {
+       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+       const fileURL = URL.createObjectURL(file);
+       window.open(fileURL);   
+    });
+  }
+
+  downloadTemplate(){
+    this.http.get(environment.baseurl + 'downloadTemplate/', {responseType : 'blob'}).subscribe(data => {
+       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+       const fileURL = URL.createObjectURL(file);
+       window.open(fileURL);   
+    });
   }
 
 
