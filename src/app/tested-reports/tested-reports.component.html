@@ -1,0 +1,125 @@
+<app-header></app-header>
+<div class="container-fluid body-content">
+  <form>
+    <!-- <div class="jumbotron"> -->
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-md-2 col-sm-6 text-dark font-weight-bold">
+        <h2>Test Reports</h2>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="row justify-content-left">
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="application">Application Name</label>
+          <select class="form-control" id="application" name ="application" [(ngModel)]="report.applicationID">
+            <!-- <option *ngFor="let app of applicationsList">Default select</option> -->
+            <option *ngFor="let app of applicationsList" value="{{app.id}}">{{app.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="screen">Screen Name</label>
+          <select class="form-control" id="screen" name="screen" [(ngModel)] ="report.screenID">
+            <!-- <option *ngFor="let screen of screensList | async">Default select</option> -->
+            <option *ngFor="let app of screensList" value="{{app.id}}">{{app.name}}</option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="tFromDate">Tested From</label>
+          <div class="input-group date" data-provide="datepicker-inline" id='datetimepickerFrom'>
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dpFrom" [(ngModel)]="modelFrom" ngbDatepicker
+              #from="ngbDatepicker"> -->
+      <!-- <div class="col-xs-12 col-12 col-md-4 form-group">
+                     <input type="text"
+                           placeholder="Daterangepicker"
+                           class="form-control"
+                           bsDaterangepicker
+                           [bsConfig]="{ adaptivePosition: true }"> 
+                  </div>-->
+      <!-- <div class="input-group-append">
+              <span class="input-group-addon">
+                <span class="fa fa-calendar"></span>
+              </span>
+              <button class="btn btn-outline-secondary calendar" (click)="from.toggle()" type="button"></button>
+            </div>
+          </div>
+          
+        </div>
+      </div> -->
+      <!-- <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="tToDate">Tested To</label>
+          <div class="input-group date" data-provide="datepicker-inline" id='datetimepickerTo'>
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dpTo" [(ngModel)]="modelTo" ngbDatepicker
+              #to="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="tFromDate">Tested From</label>
+          <div class="input-group date">
+            <app-date-time-picker [(ngModel)]="report.testFromDate" name="fromDate"></app-date-time-picker>
+          </div>
+          <!-- <div >
+            <ngb-datepicker #dp name="datepicker" [ngModel]="datetime"  (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+            <button class="btn btn-block btn-outline-secondary" [disabled]="!datetime?.day" [ngbPopover]="timePickerContent" type="button" (click)="toggleDateTimeState($event)">
+                <fa-icon [icon]="['far', 'clock']"></fa-icon>
+            </button>
+        </div> -->
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="tToDate">Tested To</label>
+          <div class="input-group date">
+            <app-date-time-picker [(ngModel)]="report.testToDate" name="toDate"></app-date-time-picker>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="testedByName">Tested By</label>
+          <select class="form-control" id="testedBy" name="testedBy" [(ngModel)]="report.testedBy">
+            <!-- <option *ngFor="let app of testUsersList ">Default select</option> -->
+            <option *ngFor="let app of testuserList">{{app}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <div class="form-group">
+          <label for="testedResultName">Test Result</label>
+          <select class="form-control" id="testedResult" name="testedResult" [(ngModel)]="report.testedResult">
+            <option value="B">Both</option>
+            <option value="P">Pass</option>
+            <option value="F">Fail</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <button type="submit" (click)="searchReport()" class="btn btn-blue ">Search</button>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="col-lg-2 col-md-2 col-sm-6">
+      <ag-grid-angular style="width: 1400px; height: 500px;" class="ag-theme-balham" [rowData]="rowData | async"
+        [columnDefs]="columnDefs" [paginationAutoPageSize]="true" [pagination]="true" [defaultColDef]="defaultColDef">
+      </ag-grid-angular>
+    </div>
+    <div class="row"></div>
+    <div class="col-lg-2 col-md-2 col-sm-6">
+      <button (click)="download()" class="btn btn-blue " type="submit">Download file</button>
+    </div>
+    
+  </form>
+</div>
