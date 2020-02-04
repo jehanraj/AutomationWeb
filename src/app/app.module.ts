@@ -15,6 +15,7 @@ import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-sui
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ToastrModule } from 'ngx-toastr';
+import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
     SignupComponent,
     HeaderComponent,
     TestSuiteMaintenanceComponent,
-    ApplicationDetailsComponent
+    ApplicationDetailsComponent,
+    TestcaseMaintenanceComponent
   ],
   imports: [
     BrowserModule,
