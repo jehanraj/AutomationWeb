@@ -26,15 +26,14 @@
         </div>
         <div class="col-2"></div>
         <div class="row justify-content-center" style="margin-top: 2.5%">
-          <div class="col-lg-3 col-md-6 col-sm-8"><label for="testFile">File Upload</label></div>
-          <div class="">
-            <div class="form-group">
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
-                  name="screenNamesFile" id="screenNamesFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-              </div>
-              <div class="col-2">
+          <div class="col-lg-3 col-md-3 col-sm-4"><label for="testFile">File Upload</label></div>
+          <div class="row">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
+                name="screenNamesFile" id="screenNamesFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+              
+              <div>
                 <a [href]="url" [download]="fileName">Download Template</a>
                 <!--<button type="submit" (click)="downloadTemplate()" class="btn btn-blue">Download Template</button>-->
               </div>
@@ -69,14 +68,12 @@
         <ag-grid-angular style="width: 500px; height: 300px;" class="ag-theme-balham" [rowData]="rowData | async"
           [columnDefs]="columnDefs" [modules]="modules">
         </ag-grid-angular>
-        <div class="col-2">
+        <div class="col-lg-3 col-md-3 col-sm-2">
           <a [href]="screenUrl" download="ApplicationScreenDetails.xlsx">Screen Name Download</a>
           <!--<button type="submit" (click)="download()" class="btn btn-blue">Screen Name Download</button>-->
         </div>
       </div>
     </div>
     <div class="form-group"></div>
-
-
   </form>
 </div>
