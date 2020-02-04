@@ -4,6 +4,8 @@ import { AppService } from '../shared/app.service';
 import { Lookup, Application } from '../shared/app.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-application-details',
@@ -16,11 +18,14 @@ export class ApplicationDetailsComponent implements OnInit {
   private appId: string = 'Select';
   screenNamesFile: File = null;
   appName: string = "";
-  appBrowser: string = "";
+  appBrowser: string = "Select";
   message: string = "";
+  fileName: string;
+  url;
+  screenUrl;
 
   columnDefs = [
-    {headerName: 'Screen Name', field: 'screenName'}
+    {headerName: 'Screen Name', field: 'screenName', default: 'No Data Found'}
   ];
 
   rowData : Observable<Application>;
@@ -31,10 +36,11 @@ export class ApplicationDetailsComponent implements OnInit {
   //   { make: 'Porsche', model: 'Boxter', price: 72000 }
   // ];
 
-  constructor(private app: AppService,private http: HttpClient) {}
+  constructor(private app: AppService,private http: HttpClient, private toastr: ToastrService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.loadApplications();
+    this.downloadTemplate();
   }
 
  loadApplications() {
@@ -48,6 +54,7 @@ export class ApplicationDetailsComponent implements OnInit {
     this.appName = data[0].applicationName;
     this.appBrowser = data[0].applicationBrowser;
     })
+    this.download();
   }
 
   updateApplicationDetails() {
@@ -63,16 +70,17 @@ export class ApplicationDetailsComponent implements OnInit {
   download(){
     this.http.get(environment.baseurl + 'downloadExcel/' + this.appId, {responseType : 'blob'}).subscribe(data => {
        const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-       const fileURL = URL.createObjectURL(file);
-       window.open(fileURL);   
+      // const fileURL = URL.createObjectURL(file);
+       //window.open(fileURL); 
+       this.screenUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
     });
   }
 
   downloadTemplate(){
     this.http.get(environment.baseurl + 'downloadTemplate/', {responseType : 'blob'}).subscribe(data => {
        const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-       const fileURL = URL.createObjectURL(file);
-       window.open(fileURL);   
+       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+       this.fileName = 'ApplicationScreenDetails.xlsx';
     });
   }
 

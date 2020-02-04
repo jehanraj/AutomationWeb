@@ -36,11 +36,19 @@ export class AppService {
   }
 
   postTestSuite(app: string, screen: string, fileToUpload: File) {
+    return this.uploadFileForm('uploadTestSuite', app, screen, fileToUpload);
+  }
+
+  postTestCase(app: string, screen: string, fileToUpload: File) {
+    return this.uploadFileForm('uploadTestCase', app, screen, fileToUpload);
+  }
+
+  uploadFileForm(url: string, app: string, screen: string, fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('application', app);
     formData.append('screen', screen);
-    return this.http.post(environment.baseurl + 'uploadTestSuite', formData)
+    return this.http.post(environment.baseurl + url, formData)
       .pipe((data) => data);
   }
 

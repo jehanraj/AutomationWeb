@@ -18,7 +18,7 @@ import { ApplicationDetailsComponent } from './application-details/application-d
 import { ToastrModule } from 'ngx-toastr';
 import { TestedReportsComponent } from './tested-reports/tested-reports.component';
 //import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
-
+import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,8 @@ import { TestedReportsComponent } from './tested-reports/tested-reports.componen
     HeaderComponent,
     TestSuiteMaintenanceComponent,
     ApplicationDetailsComponent,
-    TestedReportsComponent
-    //,DateTimePickerComponent
+    TestedReportsComponent,
+    TestcaseMaintenanceComponent
   ],
   imports: [
     BrowserModule,
