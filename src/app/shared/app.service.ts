@@ -48,8 +48,7 @@ export class AppService {
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('application', app);
     formData.append('screen', screen);
-    return this.http.post(environment.baseurl + url, formData)
-      .pipe((data) => data);
+    return this.http.post(environment.baseurl + url, formData);
   }
 
   startTesting(appName: string, screenName: string) {
@@ -63,8 +62,8 @@ export class AppService {
   getApplicationsForTestReport(): Observable<Lookup> {
     return this.http.get<Lookup>(environment.baseurl + 'loadTestReportDetails');
   }
-  
-  getTestedReports():any{
+
+  getTestedReports(): any {
     return this.http.get(environment.baseurl + 'loadTestReportDetails');
   }
 }

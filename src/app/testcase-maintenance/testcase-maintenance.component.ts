@@ -18,7 +18,7 @@ export class TestcaseMaintenanceComponent implements OnInit {
   applicationList: Observable<Lookup>;
   screenList: any;
   screenMap: any;
-  fileName: string;
+  disableSubmit = false;
   url;
 
   constructor(private app: AppService, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
@@ -35,13 +35,20 @@ export class TestcaseMaintenanceComponent implements OnInit {
     this.screenName = '';
     this.screenList = this.screenMap[this.appName];
   }
-  uploadtestsuite() {
-    this.app.postTestCase(this.appName, this.screenName, this.file).subscribe(data => {
-      console.log(data);
-      this.toastr.success('', 'Upload Success', {
-        timeOut: 3000
-      });
-    });
+  uploadtestCase() {
+    if (!this.disableSubmit) {
+      this.disableSubmit = true;
+      this.app.postTestCase(this.appName, this.screenName, this.file).subscribe(data => {
+        this.toastr.success('', 'Upload Success', {
+          timeOut: 3000
+        });
+        this.disableSubmit = false;
+      },
+        (error) => {
+          console.log(error);
+          this.disableSubmit = false;
+        });
+    }
   }
   handleFileInput(files: FileList) {
     this.file = files.item(0);

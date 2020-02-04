@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark header-bg-blue">
+<nav class="navbar navbar-expand-lg navbar-dark header-bg-blue">
   <div class="navbar-header">
     <img class="navbar-brand" src="../../assets/headericon.png" width="42" height="42">
     <a class="navbar-brand" href="#">Automated Testing Tool</a>
@@ -9,7 +9,7 @@
   </div>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" routerLink="">Home</a>
       </li>
       <li class="nav-item active">
@@ -20,6 +20,18 @@
       </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/testcasemaintenance">Testcase Maintenance</a>
+      </li> -->
+      <li class="nav-item dropdown" ngbDropdown>
+        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" ngbDropdownToggle aria-haspopup="true"
+          aria-expanded="false">
+          Menu
+        </a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <a ngbDropdownItem class="dropdown-item" routerLink="/applicationdetails">Application Details</a>
+          <a ngbDropdownItem class="dropdown-item" routerLink="/testsuitemaintenance">TestSuite Maintenance</a>
+          <a ngbDropdownItem class="dropdown-item" routerLink="/testcasemaintenance">Testcase Maintenance</a>
+
+        </div>
       </li>
     </ul>
   </div>
