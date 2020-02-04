@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgGridModule } from 'ag-grid-angular';
+import {Grid} from "ag-grid/main";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,8 +15,10 @@ import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-suite-maintenance.component';
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
-import { AgGridModule } from 'ag-grid-angular';
 import { ToastrModule } from 'ngx-toastr';
+import { TestedReportsComponent } from './tested-reports/tested-reports.component';
+//import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
+
 
 @NgModule({
   declarations: [
@@ -24,12 +28,13 @@ import { ToastrModule } from 'ngx-toastr';
     SignupComponent,
     HeaderComponent,
     TestSuiteMaintenanceComponent,
-    ApplicationDetailsComponent
+    ApplicationDetailsComponent,
+    TestedReportsComponent
+    //,DateTimePickerComponent
   ],
   imports: [
     BrowserModule,
     AgGridModule.withComponents([]),
-    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
@@ -37,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
   ],
   providers: [AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
