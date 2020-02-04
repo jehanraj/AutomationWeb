@@ -60,4 +60,11 @@ export class AppService {
     return this.http.get(environment.baseurl + 'template', { responseType: 'blob' });
   }
 
+  getApplicationsForTestReport(): Observable<Lookup> {
+    return this.http.get<Lookup>(environment.baseurl + 'loadTestReportDetails');
+  }
+  
+  getTestedReports():any{
+    return this.http.get(environment.baseurl + 'loadTestReportDetails');
+  }
 }

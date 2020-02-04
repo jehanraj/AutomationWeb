@@ -10,3 +10,14 @@ export interface Application {
     browser: string;
     Sname: string;
 }
+
+export interface TestResultsReports{
+
+    applicationID?: string;
+    screenID?: string;
+    testedBy?: string;
+    testFromDate?: Date;
+    testToDate?: Date;
+    testOutput?: string;
+
+}
