@@ -1,76 +1,82 @@
-<p>
-</p>
 <app-header> Application Details</app-header>
 <div class="container body-content">
   <form>
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="application">Application Name</label>
-          <select class="form-control" id="applicationId" name="applicationId"  [(ngModel)]="appId">
+          <select class="form-control" id="applicationId" name="applicationId" [(ngModel)]="appId">
             <option>Select</option>
-            <option value ="{{app.id}}" *ngFor="let app of applicationsList | async">{{app.name}}</option>
+            <option value="{{app.id}}" *ngFor="let app of applicationsList | async">{{app.name}}</option>
           </select>
+
         </div>
       </div>
-    </div>
-    <div class="row"></div>
-    <div class="row justify-content-center">
-      <div class="col-2">
+      <div class="col-lg-2 col-md-2 col-sm-6" style="margin-top: 2.5%">
         <button type="submit" (click)="search()" class="btn btn-blue">Search</button>
       </div>
     </div>
     <div class="row"></div>
     <div>
-      <div class="col-lg-3 col-md-2 col-sm-6">
-        <label for="applicationURL">Application Name</label>
-        <input type="text" class="form-control" id="applicationNameL" name="applicationName" [(ngModel)]="appName" value="{{appName}}"/>
-    </div>
-    <div class="col-lg-5 col-md-2 col-sm-6">
+      <div class="row">
+        <div class="col-lg-3 col-md-2 col-sm-6">
+          <label for="applicationURL">Application Name</label>
+          <input type="text" class="form-control" id="applicationNameL" name="applicationName" [(ngModel)]="appName"
+            value="{{appName}}" />
+        </div>
+
+        <div class="row justify-content-center" style="margin-top: 2.5%">
+          <div class="col-lg-3 col-md-6 col-sm-8"><label for="testFile">File Upload</label></div>
+          <div class="">
+            <div class="form-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
+                  name="screenNamesFile" id="screenNamesFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+              <div class="col-2">
+                <a [href]="url" [download]="fileName">Download Template</a>
+                <!--<button type="submit" (click)="downloadTemplate()" class="btn btn-blue">Download Template</button>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5 col-md-2 col-sm-6">
           <label for="applicationURL">Application URL</label>
-          <input type="text" class="form-control" id="applicationURL" name="applicationURL"  [(ngModel)]="appURL" value="{{appURL}}"/>
-    </div>
-    <div class="col-lg-3 col-md-2 col-sm-6">
-      <label for="applicationURL">Application Browser</label>
-      <select class="form-control" id="applicationBrowser" name="applicationBrowser"  [(ngModel)]="appBrowser" value="{{appBrowser}}">
-        <option>chrome</option>
-        <option>IE</option>
-      </select>
-    </div>
-    </div>
-    <div class="form-group"></div>
-    <div class="row justify-content-center">
-      <div class="col-lg-2 col-md-2 col-sm-6"><label for="testFile">File Upload</label></div>
-      <div class="col-lg-4 col-md-4 col-sm-6">
-        <div class="form-group">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)" name="screenNamesFile"
-              id="screenNamesFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
-          </div>
-          <div class="col-2">
-            <a [href]="url" [download]="fileName">Download Template</a>
-            <!--<button type="submit" (click)="downloadTemplate()" class="btn btn-blue">Download Template</button>-->
-          </div>
+          <input type="text" class="form-control" id="applicationURL" name="applicationURL" [(ngModel)]="appURL"
+            value="{{appURL}}" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-2 col-sm-6">
+          <label for="applicationURL">Application Browser</label>
+          <select class="form-control" id="applicationBrowser" name="applicationBrowser" [(ngModel)]="appBrowser"
+            value="{{appBrowser}}">
+            <option>Select</option>
+            <option>chrome</option>
+            <option>IE</option>
+          </select>
         </div>
       </div>
       <div class="col-lg-1 col-md-1 col-sm-2"></div>
       <div class="row justify-content-center">
         <button type="submit" (click)="updateApplicationDetails()" class="btn btn-blue">Save</button>
       </div>
-    </div>
-    <div class="form-group"></div>
-    <div class="row justify-content-center">
-      <ag-grid-angular 
-        style="width: 500px; height: 300px;" 
-        class="ag-theme-balham"
-        [rowData]="rowData | async" 
-        [columnDefs]="columnDefs"
-        [modules]="modules">
-      </ag-grid-angular>
-      <div class="col-2">
-        <button type="submit" (click)="download()" class="btn btn-blue">Screen Name Download</button>
+      <div class="form-group"></div>
+      <div class="row justify-content-left">
+        <ag-grid-angular style="width: 500px; height: 300px;" class="ag-theme-balham" [rowData]="rowData | async"
+          [columnDefs]="columnDefs" [modules]="modules">
+        </ag-grid-angular>
+        <div class="col-2">
+          <a [href]="screenUrl" download="ApplicationScreenDetails.xlsx">Screen Name Download</a>
+          <!--<button type="submit" (click)="download()" class="btn btn-blue">Screen Name Download</button>-->
+        </div>
       </div>
     </div>
+    <div class="form-group"></div>
+
+
   </form>
 </div>

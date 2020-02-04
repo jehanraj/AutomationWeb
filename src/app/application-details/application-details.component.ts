@@ -18,13 +18,14 @@ export class ApplicationDetailsComponent implements OnInit {
   private appId: string = 'Select';
   screenNamesFile: File = null;
   appName: string = "";
-  appBrowser: string = "";
+  appBrowser: string = "Select";
   message: string = "";
   fileName: string;
   url;
+  screenUrl;
 
   columnDefs = [
-    {headerName: 'Screen Name', field: 'screenName'}
+    {headerName: 'Screen Name', field: 'screenName', default: 'No Data Found'}
   ];
 
   rowData : Observable<Application>;
@@ -53,6 +54,7 @@ export class ApplicationDetailsComponent implements OnInit {
     this.appName = data[0].applicationName;
     this.appBrowser = data[0].applicationBrowser;
     })
+    this.download();
   }
 
   updateApplicationDetails() {
@@ -68,8 +70,9 @@ export class ApplicationDetailsComponent implements OnInit {
   download(){
     this.http.get(environment.baseurl + 'downloadExcel/' + this.appId, {responseType : 'blob'}).subscribe(data => {
        const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-       const fileURL = URL.createObjectURL(file);
-       window.open(fileURL);   
+      // const fileURL = URL.createObjectURL(file);
+       //window.open(fileURL); 
+       this.screenUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
     });
   }
 
