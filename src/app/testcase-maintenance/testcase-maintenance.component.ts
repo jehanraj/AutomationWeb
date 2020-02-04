@@ -6,17 +6,19 @@ import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-test-suite-maintenance',
-  templateUrl: './test-suite-maintenance.component.html',
-  styleUrls: ['./test-suite-maintenance.component.css']
+  selector: 'app-testcase-maintenance',
+  templateUrl: './testcase-maintenance.component.html',
+  styleUrls: ['./testcase-maintenance.component.css']
 })
-export class TestSuiteMaintenanceComponent implements OnInit {
-  testSuiteFile: File = null;
+export class TestcaseMaintenanceComponent implements OnInit {
+
+  file: File = null;
   appName: string;
   screenName: string;
   applicationList: Observable<Lookup>;
   screenList: any;
   screenMap: any;
+  fileName: string;
   url;
 
   constructor(private app: AppService, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
@@ -34,7 +36,7 @@ export class TestSuiteMaintenanceComponent implements OnInit {
     this.screenList = this.screenMap[this.appName];
   }
   uploadtestsuite() {
-    this.app.postTestSuite(this.appName, this.screenName, this.testSuiteFile).subscribe(data => {
+    this.app.postTestCase(this.appName, this.screenName, this.file).subscribe(data => {
       console.log(data);
       this.toastr.success('', 'Upload Success', {
         timeOut: 3000
@@ -42,7 +44,7 @@ export class TestSuiteMaintenanceComponent implements OnInit {
     });
   }
   handleFileInput(files: FileList) {
-    this.testSuiteFile = files.item(0);
+    this.file = files.item(0);
   }
 
   downloadTemplate() {

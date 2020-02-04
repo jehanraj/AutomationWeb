@@ -10,7 +10,7 @@ import { Lookup } from '../shared/app.model';
 })
 export class HomeComponent implements OnInit {
 
-  private applicationsList: Observable<Lookup>;
+  private applicationList: Observable<Lookup>;
   private screenList: any;
   private screenMap; any;
   appName: string;
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadData() {
-    this.applicationsList = this.app.getApplications();
+    this.applicationList = this.app.getApplications();
     this.app.getScreens().subscribe(data => {
       this.screenMap = data;
     });
@@ -33,8 +33,7 @@ export class HomeComponent implements OnInit {
     this.screenList = this.screenMap[this.appName];
   }
   runTest() {
-    const data = { selectedScreenName: '', screen: '' };
-    this.app.startTesting(data).subscribe(date => {
+    this.app.startTesting(this.appName, this.screenName).subscribe(date => {
       console.log('test running');
     });
 

@@ -36,16 +36,24 @@ export class AppService {
   }
 
   postTestSuite(app: string, screen: string, fileToUpload: File) {
+    return this.uploadFileForm('uploadTestSuite', app, screen, fileToUpload);
+  }
+
+  postTestCase(app: string, screen: string, fileToUpload: File) {
+    return this.uploadFileForm('uploadTestCase', app, screen, fileToUpload);
+  }
+
+  uploadFileForm(url: string, app: string, screen: string, fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('application', app);
     formData.append('screen', screen);
-    return this.http.post(environment.baseurl + 'uploadTestSuite', formData)
+    return this.http.post(environment.baseurl + url, formData)
       .pipe((data) => data);
   }
 
-  startTesting(data: any) {
-    return this.http.post(environment.baseurl + 'startTest', data);
+  startTesting(appName: string, screenName: string) {
+    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName, {});
   }
 
   downloadTemplate() {
