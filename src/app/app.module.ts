@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgGridModule } from 'ag-grid-angular';
-import {Grid} from "ag-grid/main";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +36,7 @@ import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-ma
     BrowserModule,
     AgGridModule.withComponents([]),
     AppRoutingModule,
+    BrowserAnimationsModule,
     NgbModule,
     FormsModule,
     HttpClientModule,
@@ -43,6 +44,6 @@ import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-ma
   ],
   providers: [AppService],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

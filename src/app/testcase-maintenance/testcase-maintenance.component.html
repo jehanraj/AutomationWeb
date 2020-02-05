@@ -24,7 +24,7 @@
               <div class="col-lg-2 col-md-2 col-sm-6">
                 <label for="application">Screen Name</label>
                 <div class="form-group">
-                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName">
+                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName" (change)="downloadTestCaseFile()">
                     <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
                   </select>
                 </div>
@@ -43,11 +43,11 @@
             <div class="row">
               <div class="col-4"></div>
               <div class="col-2 justify-content-center">
-                <button type="submit" (click)="uploadtestsuite()" class="btn btn-blue">Upload TestSuite</button>
+                <button type="submit" (click)="uploadtestsuite()" class="btn btn-blue">Upload TestCase</button>
               </div>
               <div class="col-4"></div>
               <div class="col-2">
-                <a [href]="url" download="Testcase.xlsx">Download TestSuite</a>
+                <a [href]="url" [download]="fileName">Download TestCase</a>
               </div>
             </div>
           </form>

@@ -17,6 +17,7 @@ export class TestSuiteMaintenanceComponent implements OnInit {
   applicationList: Observable<Lookup>;
   screenList: any;
   screenMap: any;
+  fileName: string;
   url;
 
   constructor(private app: AppService, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
@@ -26,7 +27,6 @@ export class TestSuiteMaintenanceComponent implements OnInit {
     this.app.getScreens().subscribe(data => {
       this.screenMap = data;
     });
-    this.downloadTemplate();
   }
 
   updateScreensList() {
@@ -45,10 +45,14 @@ export class TestSuiteMaintenanceComponent implements OnInit {
     this.testSuiteFile = files.item(0);
   }
 
-  downloadTemplate() {
-    this.app.downloadTemplate().subscribe((data) => {
+  downloadTestFile() {
+    this.app.downloadTestSuite(this.appName, this.screenName).subscribe((data) => {
       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+      this.fileName = 'TestSuite_' + this.appName + '_' + this.screenName + '.xlsx';
+    }, (error) => {
+      console.log('File not found');
+      this.fileName = '';
     });
   }
 }

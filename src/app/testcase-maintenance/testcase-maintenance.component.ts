@@ -28,7 +28,6 @@ export class TestcaseMaintenanceComponent implements OnInit {
     this.app.getScreens().subscribe(data => {
       this.screenMap = data;
     });
-    this.downloadTemplate();
   }
 
   updateScreensList() {
@@ -47,10 +46,14 @@ export class TestcaseMaintenanceComponent implements OnInit {
     this.file = files.item(0);
   }
 
-  downloadTemplate() {
-    this.app.downloadTemplate().subscribe((data) => {
+  downloadTestCaseFile() {
+    this.app.downloadTestCase(this.appName, this.screenName).subscribe((data) => {
       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+      this.fileName = 'TestCase_' + this.appName + '_' + this.screenName + '.xlsx';
+    }, (error) => {
+      console.log('File not found');
+      this.fileName = '';
     });
   }
 }

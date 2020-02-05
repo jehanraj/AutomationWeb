@@ -56,15 +56,20 @@ export class AppService {
     return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName, {});
   }
 
-  downloadTemplate() {
-    return this.http.get(environment.baseurl + 'template', { responseType: 'blob' });
-  }
-
   getApplicationsForTestReport(): Observable<Lookup> {
     return this.http.get<Lookup>(environment.baseurl + 'loadTestReportDetails');
   }
-  
-  getTestedReports():any{
+
+  getTestedReports(): any {
     return this.http.get(environment.baseurl + 'loadTestReportDetails');
+  }
+  downloadTestCase(appName: string, screenName: string) {
+    const url = environment.baseurl + 'downloadTestCase?application=' + appName + '&screen=' + screenName;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+  downloadTestSuite(appName: string, screenName: string) {
+    const url = environment.baseurl + 'downloadTestSuite?application=' + appName + '&screen=' + screenName;
+    return this.http.get(url, { responseType: 'blob' });
   }
 }
