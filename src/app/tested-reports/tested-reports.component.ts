@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TestResultsReports } from '../shared/app.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tested-reports',
@@ -63,11 +64,10 @@ export class TestedReportsComponent implements OnInit {
     {headerName: 'Application', field: 'testRAppName'},
     {headerName: 'Screen', field: 'testRScreenName'},
     {headerName: 'TestCase', field: 'testedCaseName'},
-    {headerName: 'Tested From', field: 'testStartDate'
-    // ,cellRenderer: (data) => {
-     // return moment(data.testStartDate).format('MM/DD/YYYY HH:mm') }
-},
-    {headerName: 'Tested To', field: 'testEndDate'},
+    {headerName: 'Tested From', field: 'testStartDate',cellRenderer: (data) => {
+     return moment(data.testStartDate).format('DD-MM-YYYY HH:mm:ss') }},
+    {headerName: 'Tested To', field: 'testEndDate',cellRenderer: (data) => {
+      return moment(data.testEndDate).format('DD-MM-YYYY HH:mm:ss') }},
     {headerName: 'TestedBy', field: 'testedBy'},
     {headerName: 'Test Input', field: 'testInputs'},
     {headerName: 'Test Output', field: 'testOutput'},

@@ -16,7 +16,8 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="application">Application Name</label>
-          <select class="form-control" id="application" name ="application" [(ngModel)]="report.applicationID" #AppSelect (change)="onChangeLoadScreen(AppSelect.value)">
+          <select class="form-control" id="application" name="application" [(ngModel)]="report.applicationID" #AppSelect
+            (change)="onChangeLoadScreen(AppSelect.value)">
             <!-- <option selected="selected">Select</option> -->
             <option *ngFor="let app of applicationsList" value="{{app.id}}">{{app.name}}</option>
           </select>
@@ -34,17 +35,17 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="testStartDate">Tested From</label>
-            <input class = "form-control" [owlDateTimeTrigger]="testStartDate" [owlDateTime]="testStartDate" [(ngModel)]="report.testStartDate"
-              name="testStartDate" id="testStartDate">
-            <owl-date-time  #testStartDate></owl-date-time>
+          <input class="form-control" [owlDateTimeTrigger]="testStartDate" [owlDateTime]="testStartDate"
+            [(ngModel)]="report.testStartDate" name="testStartDate" id="testStartDate">
+          <owl-date-time #testStartDate></owl-date-time>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="testEndDate">Tested To</label>
-            <input class = "form-control" [owlDateTimeTrigger]="testEndDate" [owlDateTime]="testEndDate" [(ngModel)]="report.testEndDate"
-              name="testEndDate" id="testEndDate">
-            <owl-date-time [hour12Timer]="'false'" #testEndDate></owl-date-time>
+          <input class="form-control" [owlDateTimeTrigger]="testEndDate" [owlDateTime]="testEndDate"
+            [(ngModel)]="report.testEndDate" name="testEndDate" id="testEndDate">
+          <owl-date-time [hour12Timer]="'false'" #testEndDate></owl-date-time>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
@@ -76,9 +77,12 @@
     </div>
     <div class="row"></div>
     <div class="col-lg-2 col-md-2 col-sm-6">
-      <ag-grid-angular style="width: 1400px; height: 500px;" class="ag-theme-balham" [rowData]="rowData | async"
-        [columnDefs]="columnDefs" [paginationAutoPageSize]="true" [pagination]="true" [defaultColDef]="defaultColDef">
-      </ag-grid-angular>
+      <div style="display: flex; flex-direction: column">
+          <ag-grid-angular style="width: 1200px; height: 500px;" class="ag-theme-balham" [rowData]="rowData | async"
+            [columnDefs]="columnDefs" [paginationAutoPageSize]="true" [pagination]="true" [defaultColDef]="defaultColDef"
+            [domLayout]="autoHeight">
+          </ag-grid-angular>
+      </div>
     </div>
     <div class="row"></div>
     <div class="col-lg-2 col-md-2 col-sm-6">
