@@ -1,5 +1,11 @@
 <app-header></app-header>
 <div class="container-fluid body-content">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Tested Reports</li>
+    </ol>
+  </nav>
   <form>
     <div class="row justify-content-center">
       <div class="col-lg-2 col-md-2 col-sm-6 text-dark font-weight-bold">
@@ -19,7 +25,7 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="screen">Screen Name</label>
-          <select class="form-control" id="screen" name="screen" [(ngModel)] ="report.screenID">
+          <select class="form-control" id="screen" name="screen" [(ngModel)]="report.screenID">
             <!-- <option *ngFor="let screen of screensList | async">Default select</option> -->
             <option *ngFor="let app of screensList" value="{{app.id}}">{{app.name}}</option>
           </select>
@@ -114,6 +120,6 @@
       <!-- <button (click)="download()" class="btn btn-blue " type="submit">Download file</button> -->
       <a [href]="url" [download]="fileName">Download Test Results</a>
     </div>
-    
+
   </form>
 </div>
