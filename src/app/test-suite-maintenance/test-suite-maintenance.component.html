@@ -24,7 +24,7 @@
               <div class="col-lg-2 col-md-2 col-sm-6">
                 <label for="application">Screen Name</label>
                 <div class="form-group">
-                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName">
+                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName" (change)="downloadTestFile()">
                     <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
                   </select>
                 </div>

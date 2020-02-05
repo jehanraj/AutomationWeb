@@ -42,7 +42,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    OwlDateTimeModule, 
+    OwlDateTimeModule,
     OwlNativeDateTimeModule,
     BrowserAnimationsModule
   ],

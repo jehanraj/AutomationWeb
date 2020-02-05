@@ -13,7 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./application-details.component.css']
 })
 export class ApplicationDetailsComponent implements OnInit {
-  
+
   applicationsList: Observable<Lookup>;
   private appId: string = 'Select';
   screenNamesFile: File = null;
@@ -25,41 +25,44 @@ export class ApplicationDetailsComponent implements OnInit {
   screenUrl;
 
   columnDefs = [
-    {headerName: 'Screen Name', field: 'screenName', default: 'No Data Found'}
+    { headerName: 'Screen Name', field: 'screenName', default: 'No Data Found' }
   ];
 
-  rowData : Observable<Application>;
-  appURL:string;
+  rowData: Observable<Application>;
+  appURL: string;
   // [
   //   { make: 'Toyota', model: 'Celica', price: 35000 },
   //   { make: 'Ford', model: 'Mondeo', price: 32000 },
   //   { make: 'Porsche', model: 'Boxter', price: 72000 }
   // ];
 
-  constructor(private app: AppService,private http: HttpClient, private toastr: ToastrService, private sanitizer: DomSanitizer) {}
+  constructor(private app: AppService, private http: HttpClient, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.loadApplications();
     this.downloadTemplate();
   }
 
- loadApplications() {
-  this.applicationsList = this.app.getApplications();
- }
+  loadApplications() {
+    this.applicationsList = this.app.getApplications();
+  }
 
- search(){
+  search() {
     this.rowData = this.http.get<Application>(environment.baseurl + 'applicationDetails/' + this.appId);
-    this.rowData.subscribe(data=>{
-    this.appURL = data[0].applicationURL;
-    this.appName = data[0].applicationName;
-    this.appBrowser = data[0].applicationBrowser;
-    })
+    this.rowData.subscribe(data => {
+      this.appURL = data[0].applicationURL;
+      this.appName = data[0].applicationName;
+      this.appBrowser = data[0].applicationBrowser;
+    });
     this.download();
   }
 
   updateApplicationDetails() {
-     this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser, this.screenNamesFile).subscribe(data => {
+    this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser, this.screenNamesFile).subscribe(data => {
       console.log(data);
+      this.toastr.success('', 'Upload Success', {
+        timeOut: 3000
+      });
     });
     this.search();
   }
@@ -67,20 +70,20 @@ export class ApplicationDetailsComponent implements OnInit {
     this.screenNamesFile = files.item(0);
   }
 
-  download(){
-    this.http.get(environment.baseurl + 'downloadExcel/' + this.appId, {responseType : 'blob'}).subscribe(data => {
-       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+  download() {
+    this.http.get(environment.baseurl + 'downloadExcel/' + this.appId, { responseType: 'blob' }).subscribe(data => {
+      const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
       // const fileURL = URL.createObjectURL(file);
-       //window.open(fileURL); 
-       this.screenUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+      //window.open(fileURL); 
+      this.screenUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
     });
   }
 
-  downloadTemplate(){
-    this.http.get(environment.baseurl + 'downloadTemplate/', {responseType : 'blob'}).subscribe(data => {
-       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
-       this.fileName = 'ApplicationScreenDetails.xlsx';
+  downloadTemplate() {
+    this.http.get(environment.baseurl + 'downloadTemplate/', { responseType: 'blob' }).subscribe(data => {
+      const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+      this.fileName = 'ApplicationScreenDetails.xlsx';
     });
   }
 
