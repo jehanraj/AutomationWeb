@@ -1,5 +1,11 @@
-<app-header> Application Details</app-header>
+<app-header></app-header>
 <div class="container body-content">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Application Details</li>
+    </ol>
+  </nav>
   <form>
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-6">
@@ -32,7 +38,7 @@
               <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
                 name="screenNamesFile" id="screenNamesFile">
               <label class="custom-file-label" for="customFile">Choose file</label>
-              
+
               <div>
                 <a [href]="url" [download]="fileName">Download Template</a>
                 <!--<button type="submit" (click)="downloadTemplate()" class="btn btn-blue">Download Template</button>-->

@@ -28,7 +28,6 @@ export class TestcaseMaintenanceComponent implements OnInit {
     this.app.getScreens().subscribe(data => {
       this.screenMap = data;
     });
-    this.downloadTemplate();
   }
 
   updateScreensList() {
@@ -55,7 +54,7 @@ export class TestcaseMaintenanceComponent implements OnInit {
   }
 
   downloadTemplate() {
-    this.app.downloadTemplate().subscribe((data) => {
+    this.app.downloadTestCase(this.appName, this.screenName).subscribe((data) => {
       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
     });

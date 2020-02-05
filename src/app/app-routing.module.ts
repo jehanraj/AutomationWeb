@@ -10,6 +10,7 @@ import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-ma
 const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: '', component: HomeComponent },
 { path: 'testsuitemaintenance', component: TestSuiteMaintenanceComponent },
+{ path: 'testcasemaintenance', component: TestcaseMaintenanceComponent },
 { path: 'applicationdetails', component: ApplicationDetailsComponent },
 { path: 'loadTestReportDetails', component: TestedReportsComponent }];
 
