@@ -17,8 +17,9 @@ import { TestSuiteMaintenanceComponent } from './test-suite-maintenance/test-sui
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TestedReportsComponent } from './tested-reports/tested-reports.component';
-//import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +41,10 @@ import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-ma
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent],
