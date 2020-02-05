@@ -31,57 +31,22 @@
           </select>
         </div>
       </div>
-      <!-- <div class="col-lg-2 col-md-2 col-sm-6">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
-          <label for="tFromDate">Tested From</label>
-          <div class="input-group date" data-provide="datepicker-inline" id='datetimepickerFrom'>
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dpFrom" [(ngModel)]="modelFrom" ngbDatepicker
-              #from="ngbDatepicker"> -->
-      <!-- <div class="col-xs-12 col-12 col-md-4 form-group">
-                     <input type="text"
-                           placeholder="Daterangepicker"
-                           class="form-control"
-                           bsDaterangepicker
-                           [bsConfig]="{ adaptivePosition: true }"> 
-                  </div>-->
-      <!-- <div class="input-group-append">
-              <span class="input-group-addon">
-                <span class="fa fa-calendar"></span>
-              </span>
-              <button class="btn btn-outline-secondary calendar" (click)="from.toggle()" type="button"></button>
-            </div>
-          </div>
-          
+          <label for="testStartDate">Tested From</label>
+            <input class = "form-control" [owlDateTimeTrigger]="testStartDate" [owlDateTime]="testStartDate" [(ngModel)]="report.testStartDate"
+              name="testStartDate" id="testStartDate">
+            <owl-date-time  #testStartDate></owl-date-time>
         </div>
-      </div> -->
-      <!-- <div class="col-lg-2 col-md-2 col-sm-6">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
-          <label for="tToDate">Tested To</label>
-          <div class="input-group date" data-provide="datepicker-inline" id='datetimepickerTo'>
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dpTo" [(ngModel)]="modelTo" ngbDatepicker
-              #to="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"></button>
-            </div>
-          </div>
+          <label for="testEndDate">Tested To</label>
+            <input class = "form-control" [owlDateTimeTrigger]="testEndDate" [owlDateTime]="testEndDate" [(ngModel)]="report.testEndDate"
+              name="testEndDate" id="testEndDate">
+            <owl-date-time [hour12Timer]="'false'" #testEndDate></owl-date-time>
         </div>
-      </div> -->
-      <!-- <div class="col-lg-2 col-md-2 col-sm-6">
-        <div class="form-group">
-          <label for="tFromDate">Tested From</label>
-          <div class="input-group date">
-            <app-date-time-picker [(ngModel)]="report.testFromDate" name="fromDate"></app-date-time-picker>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="col-lg-2 col-md-2 col-sm-6">
-        <div class="form-group">
-          <label for="tToDate">Tested To</label>
-          <div class="input-group date">
-            <app-date-time-picker [(ngModel)]="report.testToDate" name="toDate"></app-date-time-picker>
-          </div>
-        </div>
-      </div> -->
+      </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="testedByName">Tested By</label>

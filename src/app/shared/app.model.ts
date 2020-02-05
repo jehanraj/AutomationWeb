@@ -13,11 +13,11 @@ export interface Application {
 
 export interface TestResultsReports{
 
-    applicationID?: string;
+    applicationID?: number;
     screenID?: string;
     testedBy?: string;
-    testFromDate?: Date;
-    testToDate?: Date;
+    testStartDate?: Date;
+    testEndDate?: Date;
     testOutput?: string;
 
 }

@@ -65,17 +65,14 @@ export class TestedReportsComponent implements OnInit {
     {headerName: 'TestCase', field: 'testedCaseName'},
     {headerName: 'Tested From', field: 'testStartDate'
     // ,cellRenderer: (data) => {
-    //   return moment(data.testStartDate).format('MM/DD/YYYY HH:mm') }
+     // return moment(data.testStartDate).format('MM/DD/YYYY HH:mm') }
 },
     {headerName: 'Tested To', field: 'testEndDate'},
     {headerName: 'TestedBy', field: 'testedBy'},
     {headerName: 'Test Input', field: 'testInputs'},
     {headerName: 'Test Output', field: 'testOutput'},
  ];
- download1() {
-    this.http.get(environment.baseurl + 'downloadTestReportExcel', {responseType : 'blob'});
- }
-  
+
  download(){
     this.http.post(environment.baseurl + 'downloadTestReportExcel', this.report, {responseType : 'blob'}).subscribe(data => {
      const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
@@ -85,5 +82,5 @@ export class TestedReportsComponent implements OnInit {
      this.fileName = 'Test Results_Report.xlsx';
   });
 }
-  
+
 }
