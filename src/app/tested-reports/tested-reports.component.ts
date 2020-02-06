@@ -65,9 +65,9 @@ export class TestedReportsComponent implements OnInit {
     {headerName: 'Screen', field: 'testRScreenName'},
     {headerName: 'TestCase', field: 'testedCaseName'},
     {headerName: 'Tested From', field: 'testStartDate',cellRenderer: (data) => {
-     return moment(data.testStartDate).format('DD-MM-YYYY HH:mm:ss') }},
-    {headerName: 'Tested To', field: 'testEndDate',cellRenderer: (data) => {
-      return moment(data.testEndDate).format('DD-MM-YYYY HH:mm:ss') }},
+      return moment(data.value).format('DD-MM-YYYY HH:mm:ss') }},
+    {headerName: 'Tested To', field: 'testEndDate', cellRenderer: (data) => {
+      return moment(data.value).format('DD-MM-YYYY HH:mm:ss') }},
     {headerName: 'TestedBy', field: 'testedBy'},
     {headerName: 'Test Input', field: 'testInputs'},
     {headerName: 'Test Output', field: 'testOutput'},
