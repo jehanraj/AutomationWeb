@@ -42,7 +42,7 @@
           <label for="testEndDate">Test End Date</label>
           <input class="form-control" [owlDateTimeTrigger]="testEndDate" [owlDateTime]="testEndDate"
             [(ngModel)]="report.testEndDate" name="testEndDate" id="testEndDate">
-          <owl-date-time [hour12Timer]="'false'" #testEndDate></owl-date-time>
+          <owl-date-time #testEndDate></owl-date-time>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
@@ -75,7 +75,9 @@
       </div>
       <div class="row col-lg-2 col-md-2 col-sm-6">
         <!-- <button (click)="download()" class="btn btn-blue " type="submit">Download file</button> -->
-        <a [href]="url" [download]="fileName">Download Test Results</a>
+        <div *ngIf="(rowData | async)?.length > 0">
+          <a [href]="url" [download]="fileName">Download Test Results</a>
+        </div>
       </div>
     </div>
     <div class=" row col-lg-2 col-md-2 col-sm-6">

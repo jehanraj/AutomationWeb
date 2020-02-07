@@ -37,7 +37,7 @@ export class TestedReportsComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    this.download();
+   
     this.dropdownSettings = {
       singleSelection: false,
       selectAllText: 'Select All',
