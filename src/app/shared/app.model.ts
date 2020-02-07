@@ -19,5 +19,6 @@ export interface TestResultsReports{
     testStartDate?: Date;
     testEndDate?: Date;
     testOutput?: string;
-
+    testedByUser?: string[];
+    screenIDList?: string[];
 }

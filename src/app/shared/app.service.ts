@@ -56,10 +56,6 @@ export class AppService {
     return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName, {});
   }
 
-  getApplicationsForTestReport(): Observable<Lookup> {
-    return this.http.get<Lookup>(environment.baseurl + 'loadTestReportDetails');
-  }
-
   getTestedReports(): any {
     return this.http.get(environment.baseurl + 'loadTestReportDetails');
   }

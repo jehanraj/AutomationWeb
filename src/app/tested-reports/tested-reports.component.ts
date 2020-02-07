@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { TestResultsReports } from '../shared/app.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-tested-reports',
@@ -17,7 +18,6 @@ import * as moment from 'moment';
 export class TestedReportsComponent implements OnInit {
   
   private testuserList: string[];
-  private testOutputList: string[];
   private defaultColDef;
   applicationsList: Lookup[];
   screensList: Lookup[];
@@ -26,7 +26,10 @@ export class TestedReportsComponent implements OnInit {
   report: TestResultsReports = {};
   fileName: string;
   url;
+  dropdownSettings:IDropdownSettings;
+  dropdownSettings_Screen:IDropdownSettings;
   
+
   constructor(private app: AppService,private http: HttpClient,private sanitizer: DomSanitizer) { 
     this.defaultColDef = { resizable: true,sortable: true , filter: true};
     
@@ -34,6 +37,25 @@ export class TestedReportsComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true,
+      itemsShowLimit: 2,
+      noDataAvailablePlaceholderText :'No Data Available'
+    };
+    this.dropdownSettings_Screen = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true,
+      itemsShowLimit: 2,
+      noDataAvailablePlaceholderText :'No Data Available'
+    };
   }
 
   loadData() {
@@ -41,17 +63,14 @@ export class TestedReportsComponent implements OnInit {
       this.applicationsList = data['testAppsList'];
       this.screensList = data['testScreensList'];
       this.testuserList = data['testUsersList'];
-      this.testOutputList = data['testOutputList'];
     });
   }
 
   onChangeLoadScreen(value:string) {
-    console.log(value);
-     this.http.get(environment.baseurl + 'loadTestReportDetails/'+ value).subscribe(data => {
+       this.http.get(environment.baseurl + 'loadTestReportDetails/'+ value).subscribe(data => {
        this.applicationsList = data['testAppsList'];
        this.screensList = data['testScreensList'];
        this.testuserList = data['testUsersList'];
-       this.testOutputList = data['testOutputList'];
      });
   }
   
@@ -81,6 +100,13 @@ export class TestedReportsComponent implements OnInit {
      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
      this.fileName = 'Test Results_Report.xlsx';
   });
+}
+
+onItemSelect(item: any) {
+  console.log("onItemSelect:"+item);
+}
+onSelectAll(items: any) {
+  console.log("onSelectAll:"+items);
 }
 
 }

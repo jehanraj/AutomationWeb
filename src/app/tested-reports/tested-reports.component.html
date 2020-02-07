@@ -20,9 +20,13 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="screen">Screen Name</label>
-          <select class="form-control classic" id="screen" name="screen" [(ngModel)]="report.screenID">
+          <!-- <select class="form-control classic" id="screen" name="screen" multiple="true" [(ngModel)]="report.screenID">
             <option *ngFor="let app of screensList" value="{{app.id}}">{{app.name}}</option>
-          </select>
+          </select> -->
+          <ng-multiselect-dropdown [placeholder]="" [data]="screensList" [(ngModel)]="report.screenIDList"
+            id="screenIDList" name="screenIDList" [settings]="dropdownSettings_Screen" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
@@ -44,9 +48,13 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="testedByName">Tested By</label>
-          <select class="form-control classic" id="testedBy" name="testedBy" [(ngModel)]="report.testedBy">
+          <!-- <select class="form-control classic" id="testedBy" name="testedBy" [(ngModel)]="report.testedBy">
             <option *ngFor="let app of testuserList" value="{{app}}">{{app}}</option>
-          </select>
+          </select> -->
+          <ng-multiselect-dropdown [placeholder]="" [data]="testuserList" [(ngModel)]="report.testedByUser"
+            id="testedBy" name="testedBy" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">

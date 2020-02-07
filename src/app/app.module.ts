@@ -19,7 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TestedReportsComponent } from './tested-reports/tested-reports.component';
 import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     ToastrModule.forRoot(),
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [AppService],
   bootstrap: [AppComponent],
