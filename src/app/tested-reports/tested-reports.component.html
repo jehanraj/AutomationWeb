@@ -7,18 +7,12 @@
     </ol>
   </nav>
   <form>
-    <div class="row justify-content-center">
-      <div class="col-lg-2 col-md-2 col-sm-6 text-dark font-weight-bold">
-        <h2>Test Reports</h2>
-      </div>
-    </div>
     <div class="row justify-content-left">
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="application">Application Name</label>
-          <select class="form-control" id="application" name="application" [(ngModel)]="report.applicationID" #AppSelect
-            (change)="onChangeLoadScreen(AppSelect.value)">
-            <!-- <option selected="selected">Select</option> -->
+          <select class="form-control classic" id="application" name="application" [(ngModel)]="report.applicationID"
+            #AppSelect (change)="onChangeLoadScreen(AppSelect.value)">
             <option *ngFor="let app of applicationsList" value="{{app.id}}">{{app.name}}</option>
           </select>
         </div>
@@ -26,15 +20,14 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="screen">Screen Name</label>
-          <select class="form-control" id="screen" name="screen" [(ngModel)]="report.screenID">
-            <!-- <option *ngFor="let screen of screensList | async">Default select</option> -->
+          <select class="form-control classic" id="screen" name="screen" [(ngModel)]="report.screenID">
             <option *ngFor="let app of screensList" value="{{app.id}}">{{app.name}}</option>
           </select>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
-          <label for="testStartDate">Tested From</label>
+          <label for="testStartDate">Test Started Date</label>
           <input class="form-control" [owlDateTimeTrigger]="testStartDate" [owlDateTime]="testStartDate"
             [(ngModel)]="report.testStartDate" name="testStartDate" id="testStartDate">
           <owl-date-time #testStartDate></owl-date-time>
@@ -42,7 +35,7 @@
       </div>
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
-          <label for="testEndDate">Tested To</label>
+          <label for="testEndDate">Test End Date</label>
           <input class="form-control" [owlDateTimeTrigger]="testEndDate" [owlDateTime]="testEndDate"
             [(ngModel)]="report.testEndDate" name="testEndDate" id="testEndDate">
           <owl-date-time [hour12Timer]="'false'" #testEndDate></owl-date-time>
@@ -51,8 +44,7 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="testedByName">Tested By</label>
-          <select class="form-control" id="testedBy" name="testedBy" [(ngModel)]="report.testedBy">
-            <!-- <option value="Select">Select</option> -->
+          <select class="form-control classic" id="testedBy" name="testedBy" [(ngModel)]="report.testedBy">
             <option *ngFor="let app of testuserList" value="{{app}}">{{app}}</option>
           </select>
         </div>
@@ -60,7 +52,7 @@
       <div class="col-lg-2 col-md-2 col-sm-6">
         <div class="form-group">
           <label for="testedResultName">Test Output</label>
-          <select class="form-control" id="testOutput" name="testOutput" [(ngModel)]="report.testOutput">
+          <select class="form-control classic" id="testOutput" name="testOutput" [(ngModel)]="report.testOutput">
             <option value="B">Both</option>
             <option value="P">Pass</option>
             <option value="F">Fail</option>
@@ -69,26 +61,22 @@
         </div>
       </div>
     </div>
-    <div class="row"></div>
     <div class="row justify-content-center">
-      <div class="col-2">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <button type="submit" (click)="searchReport()" class="btn btn-blue ">Search</button>
       </div>
-    </div>
-    <div class="row"></div>
-    <div class="col-lg-2 col-md-2 col-sm-6">
-      <div style="display: flex; flex-direction: column">
-          <ag-grid-angular style="width: 1200px; height: 500px;" class="ag-theme-balham" [rowData]="rowData | async"
-            [columnDefs]="columnDefs" [paginationAutoPageSize]="true" [pagination]="true" [defaultColDef]="defaultColDef"
-            [domLayout]="autoHeight">
-          </ag-grid-angular>
+      <div class="row col-lg-2 col-md-2 col-sm-6">
+        <!-- <button (click)="download()" class="btn btn-blue " type="submit">Download file</button> -->
+        <a [href]="url" [download]="fileName">Download Test Results</a>
       </div>
     </div>
-    <div class="row"></div>
-    <div class="col-lg-2 col-md-2 col-sm-6">
-      <!-- <button (click)="download()" class="btn btn-blue " type="submit">Download file</button> -->
-      <a [href]="url" [download]="fileName">Download Test Results</a>
+    <div class=" row col-lg-2 col-md-2 col-sm-6">
+      <div style="display: flex; flex-direction: column">
+        <ag-grid-angular style="width: 1200px; height: 500px;" class="ag-theme-balham" [rowData]="rowData | async"
+          [columnDefs]="columnDefs" [paginationAutoPageSize]="true" [pagination]="true" [defaultColDef]="defaultColDef"
+          [domLayout]="autoHeight">
+        </ag-grid-angular>
+      </div>
     </div>
-
   </form>
 </div>
