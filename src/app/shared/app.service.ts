@@ -72,4 +72,8 @@ export class AppService {
     const url = environment.baseurl + 'downloadTestSuite?application=' + appName + '&screen=' + screenName;
     return this.http.get(url, { responseType: 'blob' });
   }
+
+  setUser(user: any) {
+    sessionStorage.setItem('auth_user', user);
+  }
 }

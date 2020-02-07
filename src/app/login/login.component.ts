@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  usorpwError = false;
 
   constructor(private app: AppService, private router: Router) { }
 
@@ -19,8 +20,14 @@ export class LoginComponent implements OnInit {
   loginUser() {
     const user = { 'userName': this.username, 'password': this.password };
     this.app.loginUser(user).subscribe(data => {
-      console.log('login complete');
-      this.router.navigateByUrl('');
+      this.app.setUser(data);
+      this.router.navigate(['/']);
+    }, (error) => {
+      if (error.error.text === 'SUCCESS') {
+        this.app.setUser('SUCCESS');
+        this.router.navigate(['']);
+      }
+      this.usorpwError = true;
     });
   }
 }

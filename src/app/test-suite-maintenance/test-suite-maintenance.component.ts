@@ -12,14 +12,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class TestSuiteMaintenanceComponent implements OnInit {
   testSuiteFile: File = null;
-  appName: string;
-  screenName: string;
+  appName = '';
+  screenName = '';
   applicationList: Observable<Lookup>;
   screenList: any;
   screenMap: any;
   fileName: string;
   submitEnable = true;
   url;
+  uploadedFileName: string;
 
   constructor(private app: AppService, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
 
@@ -37,8 +38,8 @@ export class TestSuiteMaintenanceComponent implements OnInit {
   uploadtestsuite() {
     if (this.submitEnable) {
       this.submitEnable = false;
+      this.uploadedFileName = '';
       this.app.postTestSuite(this.appName, this.screenName, this.testSuiteFile).subscribe(data => {
-        console.log(data);
         this.toastr.success('', 'Upload Success', {
           timeOut: 3000
         });
@@ -50,6 +51,7 @@ export class TestSuiteMaintenanceComponent implements OnInit {
   }
   handleFileInput(files: FileList) {
     this.testSuiteFile = files.item(0);
+    this.uploadedFileName = files.item(0).name;
   }
 
   downloadTestFile() {

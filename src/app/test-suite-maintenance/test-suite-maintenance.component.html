@@ -12,30 +12,35 @@
         <div class="card-body">
           <form (ngSubmit)="uploadtestsuite()">
             <div class="row">
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Application Name</label>
                 <div class="form-group">
                   <select class="form-control classic" (change)="updateScreensList()" name="application"
                     id="application" [(ngModel)]="appName">
+                    <option value="" selected disabled>Choose Application</option>
                     <option value="{{app.name}}" *ngFor="let app of applicationList | async">{{app.name}}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Screen Name</label>
                 <div class="form-group">
                   <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName" (change)="downloadTestFile()">
+                    <option value="" selected disabled>Choose Screen</option>
                     <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="testFile">File Upload</label>
                 <div class="form-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
                       name="testFile" id="testFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label" for="customFile">
+                      <span *ngIf="uploadedFileName">{{uploadedFileName}}</span>
+                      <span *ngIf="!uploadedFileName">Choose file </span>
+                    </label>
                   </div>
                 </div>
               </div>

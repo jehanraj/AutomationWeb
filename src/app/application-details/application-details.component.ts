@@ -15,11 +15,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ApplicationDetailsComponent implements OnInit {
 
   applicationsList: Observable<Lookup>;
-  private appId: string = 'Select';
+  private appId = 'Select';
   screenNamesFile: File = null;
-  appName: string = "";
-  appBrowser: string = "Select";
-  message: string = "";
+  appName = '';
+  appBrowser = 'Select';
+  message = '';
   fileName: string;
   url;
   screenUrl;
@@ -74,7 +74,7 @@ export class ApplicationDetailsComponent implements OnInit {
     this.http.get(environment.baseurl + 'downloadExcel/' + this.appId, { responseType: 'blob' }).subscribe(data => {
       const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
       // const fileURL = URL.createObjectURL(file);
-      //window.open(fileURL); 
+      // window.open(fileURL);
       this.screenUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
     });
   }

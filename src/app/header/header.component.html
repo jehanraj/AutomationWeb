@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark header-bg-blue">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark header-bg-blue">
   <div class="navbar-header">
     <img class="navbar-brand" src="../../assets/headericon.png" width="42" height="42">
     <a class="navbar-brand" href="#">Automated Testing Tool</a>
@@ -9,18 +9,6 @@
   </div>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item active">
-        <a class="nav-link" routerLink="">Home</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/applicationdetails">Application Details</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/testsuitemaintenance">TestSuite Maintenance</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/testcasemaintenance">Testcase Maintenance</a>
-      </li> -->
       <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" ngbDropdownToggle aria-haspopup="true"
           aria-expanded="false">
@@ -34,5 +22,35 @@
         </div>
       </li>
     </ul>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark header-bg-blue" role="navigation">
+  <div class="navbar-header">
+    <div id="menuToggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <div class="navbar-brand"><img class="navbar-brand" src="../../assets/headericon.png" width="42"
+          height="42">Automated Testing Tool</div>
+      <ul id="menu">
+        <a routerLink="">
+          <li>Home</li>
+        </a>
+        <a routerLink="/applicationdetails">
+          <li>Application Details</li>
+        </a>
+        <a routerLink="/testsuitemaintenance">
+          <li>TestSuite Maintenance</li>
+        </a>
+        <a routerLink="/testcasemaintenance">
+          <li>Testcase Maintenance</li>
+        </a>
+        <a routerLink="/loadTestReportDetails">
+          <li>Tested Reports</li>
+        </a>
+      </ul>
+    </div>
   </div>
 </nav>
