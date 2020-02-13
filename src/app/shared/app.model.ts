@@ -11,8 +11,7 @@ export interface Application {
     Sname: string;
 }
 
-export interface TestResultsReports{
-
+export interface TestResultsReports {
     applicationID?: number;
     screenID?: string;
     testedBy?: string;
@@ -21,4 +20,10 @@ export interface TestResultsReports{
     testOutput?: string;
     testedByUser?: string[];
     screenIDList?: string[];
+}
+
+export interface TestScenario {
+    testOrder?: number;
+    screenName?: string;
+    testcase?: string;
 }

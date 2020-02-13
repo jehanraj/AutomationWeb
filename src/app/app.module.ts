@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AppService } from './shared/app.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,6 +20,7 @@ import { TestedReportsComponent } from './tested-reports/tested-reports.componen
 import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TestSuiteCreationComponent } from './test-suite-creation/test-suite-creation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     TestSuiteMaintenanceComponent,
     ApplicationDetailsComponent,
     TestedReportsComponent,
-    TestcaseMaintenanceComponent
+    TestcaseMaintenanceComponent,
+    TestSuiteCreationComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     OwlDateTimeModule,

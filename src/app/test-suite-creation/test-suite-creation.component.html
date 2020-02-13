@@ -1,0 +1,122 @@
+<app-header></app-header>
+<div class="container-fluid body-content">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Test Scenario Creation</li>
+    </ol>
+  </nav>
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 mx-auto">
+      <div class="card drop-shadow mt-5">
+        <div class="card-body">
+          <form (ngSubmit)="createTestsuite()">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-6">
+                <label for="application">Application Name</label>
+                <div class="form-group">
+                  <select class="form-control classic" (change)="updateScreensList()" name="application"
+                    id="application" [(ngModel)]="appName">
+                    <option value="{{app.name}}" *ngFor="let app of applicationList | async">{{app.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-6">
+                <label for="application">New Test Component Name</label>
+                <div class="form-group">
+                  <select class="form-control classic" name="component" id="component" [(ngModel)]="screenName">
+                    <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-6">
+                <label for="application">Test Component Name</label>
+                <div class="form-group">
+                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName">
+                    <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class=" table-responsive" style="margin-top: 5%">
+              <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                  <tr>
+                    <th>Test order</th>
+                    <th>Screen Name</th>
+                    <th>Test Case</th>
+                    <th>Title 2</th>
+                    <th>Title 3</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let testScenario of testScenarioList;let i = index;">
+                    <td>
+                      {{testScenario.testOrderNo}}
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario.screenName; else notShow2">
+                        {{testScenario.screenName}}
+                      </div>
+                      <ng-template #notShow2>
+                        <div class="form-group">
+                          <select class="form-control classic" (change)="updateScreensList()" name="application"
+                            id="application" [(ngModel)]="testScenario.screenName">
+                            <option value="{{app1.name}}" *ngFor="let app1 of applicationList | async">{{app1.name}}
+                            </option>
+                          </select>
+                        </div>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario.title1; else notShow3">
+                        {{testScenario.title1}}
+                      </div>
+                      <ng-template #notShow3>
+                        <div>
+                          <input [(ngModel)]="testScenario.title1" name="title1" class="form-control" type="text" />
+                        </div>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario.title2; else notShow4">
+                        {{testScenario.title2}}
+                      </div>
+                      <ng-template #notShow4>
+                        <div>
+                          <input [(ngModel)]="testScenario.title2" name="title2" class="form-control" type="text" />
+                        </div>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario.title3; else notShow5">
+                        {{testScenario.title3}}
+                      </div>
+                      <ng-template #notShow5>
+                        <div>
+                          <input [(ngModel)]="testScenario.title3" name="title3" class="form-control" type="text" />
+                        </div>
+                      </ng-template>
+                    </td>
+                    <td (click)="deleteRow(i)">
+                      <i class="fa fa-trash fa-2x"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div><button type="submit" (click)="addRow(i)" class="btn btn-blue">Add</button></div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-2">
+                <button type="submit" (click)="createTestsuite()" class="btn btn-blue">Create TestSuite</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
