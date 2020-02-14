@@ -11,10 +11,11 @@ import { AuthenticationGuard } from './shared/authentication.guard';
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
-{ path: 'testsuitemaintenance', component: TestSuiteMaintenanceComponent },
+{ path: 'testsuite/maintenance', component: TestSuiteMaintenanceComponent },
 { path: 'testcasemaintenance', component: TestcaseMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'applicationdetails', component: ApplicationDetailsComponent, canActivate: [AuthenticationGuard] },
-{ path: 'loadTestReportDetails', component: TestedReportsComponent, canActivate: [AuthenticationGuard] }];
+{ path: 'loadTestReportDetails', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
+{ path: 'testsuite/create', component: TestSuiteCreationComponent, canActivate: [AuthenticationGuard] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
