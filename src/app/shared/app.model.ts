@@ -26,4 +26,5 @@ export interface TestScenario {
     testOrder?: number;
     screenName?: string;
     testcase?: string;
+    componentId?: number;
 }

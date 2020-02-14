@@ -13,40 +13,57 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   selector: 'app-tested-reports',
   templateUrl: './tested-reports.component.html',
   styleUrls: ['./tested-reports.component.css']
-  
 })
 export class TestedReportsComponent implements OnInit {
-  
+
   private testuserList: string[];
   private defaultColDef;
   applicationsList: Lookup[];
   screensList: Lookup[];
   public selectedMoment = new Date();
-  rowData :Observable<any>;
+  rowData: Observable<any>;
   report: TestResultsReports = {};
   fileName: string;
   url;
-  dropdownSettings:IDropdownSettings;
-  dropdownSettings_Screen:IDropdownSettings;
-  
+  dropdownSettings: IDropdownSettings;
+  dropdownSettingsScreen: IDropdownSettings;
 
-  constructor(private app: AppService,private http: HttpClient,private sanitizer: DomSanitizer) { 
-    this.defaultColDef = { resizable: true,sortable: true , filter: true};
-    
+  columnDefs = [
+    { headerName: 'Application', field: 'testRAppName' },
+    { headerName: 'Screen', field: 'testRScreenName' },
+    { headerName: 'TestCase', field: 'testedCaseName' },
+    {
+      headerName: 'Tested From', field: 'testStartDate', cellRenderer: (data) => {
+        return moment(data.value).format('DD-MM-YYYY HH:mm:ss')
+      }
+    },
+    {
+      headerName: 'Tested To', field: 'testEndDate', cellRenderer: (data) => {
+        return moment(data.value).format('DD-MM-YYYY HH:mm:ss')
+      }
+    },
+    { headerName: 'TestedBy', field: 'testedBy' },
+    { headerName: 'Test Input', field: 'testInputs' },
+    { headerName: 'Test Output', field: 'testOutput' },
+  ];
+
+  constructor(private app: AppService, private http: HttpClient, private sanitizer: DomSanitizer) {
+    this.defaultColDef = { resizable: true, sortable: true, filter: true };
+
   }
 
   ngOnInit() {
     this.loadData();
-   
+
     this.dropdownSettings = {
       singleSelection: false,
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: true,
       itemsShowLimit: 2,
-      noDataAvailablePlaceholderText :'No Data Available'
+      noDataAvailablePlaceholderText: 'No Data Available'
     };
-    this.dropdownSettings_Screen = {
+    this.dropdownSettingsScreen = {
       singleSelection: false,
       idField: 'id',
       textField: 'name',
@@ -54,7 +71,7 @@ export class TestedReportsComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: true,
       itemsShowLimit: 2,
-      noDataAvailablePlaceholderText :'No Data Available'
+      noDataAvailablePlaceholderText: 'No Data Available'
     };
   }
 
@@ -66,47 +83,32 @@ export class TestedReportsComponent implements OnInit {
     });
   }
 
-  onChangeLoadScreen(value:string) {
-       this.http.get(environment.baseurl + 'loadTestReportDetails/'+ value).subscribe(data => {
-       this.applicationsList = data['testAppsList'];
-       this.screensList = data['testScreensList'];
-       this.testuserList = data['testUsersList'];
-     });
+  onChangeLoadScreen(value: string) {
+    this.http.get(environment.baseurl + 'loadTestReportDetails/' + value).subscribe(data => {
+      this.applicationsList = data['testAppsList'];
+      this.screensList = data['testScreensList'];
+      this.testuserList = data['testUsersList'];
+    });
   }
-  
-   searchReport() {
-     this.rowData =  this.http.post(environment.baseurl + 'loadTestReports', this.report);
-     this.download();
+
+  searchReport() {
+    this.rowData = this.http.post(environment.baseurl + 'loadTestReports', this.report);
+    this.download();
   }
-  
-  columnDefs = [
-    {headerName: 'Application', field: 'testRAppName'},
-    {headerName: 'Screen', field: 'testRScreenName'},
-    {headerName: 'TestCase', field: 'testedCaseName'},
-    {headerName: 'Tested From', field: 'testStartDate',cellRenderer: (data) => {
-      return moment(data.value).format('DD-MM-YYYY HH:mm:ss') }},
-    {headerName: 'Tested To', field: 'testEndDate', cellRenderer: (data) => {
-      return moment(data.value).format('DD-MM-YYYY HH:mm:ss') }},
-    {headerName: 'TestedBy', field: 'testedBy'},
-    {headerName: 'Test Input', field: 'testInputs'},
-    {headerName: 'Test Output', field: 'testOutput'},
- ];
 
- download(){
-    this.http.post(environment.baseurl + 'downloadTestReportExcel', this.report, {responseType : 'blob'}).subscribe(data => {
-     const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-     //const fileURL = URL.createObjectURL(file);
-     //window.open(fileURL);   
-     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
-     this.fileName = 'Test Results_Report.xlsx';
-  });
-}
+  download() {
+    this.http.post(environment.baseurl + 'downloadTestReportExcel', this.report, { responseType: 'blob' }).subscribe(data => {
+      const file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file));
+      this.fileName = 'Test Results_Report.xlsx';
+    });
+  }
 
-onItemSelect(item: any) {
-  console.log("onItemSelect:"+item);
-}
-onSelectAll(items: any) {
-  console.log("onSelectAll:"+items);
-}
+  onItemSelect(item: any) {
+    console.log('onItemSelect:' + item);
+  }
+  onSelectAll(items: any) {
+    console.log('onSelectAll:' + items);
+  }
 
 }

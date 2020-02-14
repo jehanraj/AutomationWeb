@@ -12,8 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 
 export class TestSuiteCreationComponent implements OnInit {
 
-  appName: string;
-  screenName: string;
+  appId: string;
+  component: string;
   applicationList: Observable<Lookup>;
   screenList: any;
   screenMap: any;
@@ -31,8 +31,8 @@ export class TestSuiteCreationComponent implements OnInit {
   }
 
   updateScreensList() {
-    this.screenName = '';
-    this.screenList = this.screenMap[this.appName];
+    // this.screenName = '';
+    // this.screenList = this.screenMap[this.appName];
   }
 
   addRow(index) {
@@ -54,7 +54,7 @@ export class TestSuiteCreationComponent implements OnInit {
   }
 
   loadTestCaseSuiteMapping() {
-    this.testScenario = {};
+    this.testScenario = { screenName: 'test' };
     this.testScenarioList.push(this.testScenario);
   }
 
