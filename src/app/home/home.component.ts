@@ -10,7 +10,7 @@ import { Lookup } from '../shared/app.model';
 })
 export class HomeComponent implements OnInit {
 
-  private applicationList: Observable<Lookup>;
+  private applicationList: Observable<Array<Lookup>>;
   private screenList: any;
   private screenMap; any;
   appName: string;

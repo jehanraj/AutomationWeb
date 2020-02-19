@@ -14,7 +14,7 @@ export class TestSuiteMaintenanceComponent implements OnInit {
   testSuiteFile: File = null;
   appName = '';
   screenName = '';
-  applicationList: Observable<Lookup>;
+  applicationList: Observable<Array<Lookup>>;
   screenList: any;
   screenMap: any;
   fileName: string;

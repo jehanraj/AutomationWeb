@@ -23,8 +23,13 @@ export interface TestResultsReports {
 }
 
 export interface TestScenario {
+    componentMappingId?: number;
     testOrder?: number;
-    screenName?: string;
+    screen?: number;
     testcase?: string;
+    isEdit?: boolean;
+}
+export interface ComponentMapping {
     componentId?: number;
+    componentMapping?: Array<TestScenario>;
 }

@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ApplicationDetailsComponent implements OnInit {
 
-  applicationsList: Observable<Lookup>;
+  applicationsList: Observable<Array<Lookup>>;
   private appId = 'Select';
   screenNamesFile: File = null;
   appName = '';

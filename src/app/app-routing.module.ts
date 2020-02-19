@@ -15,7 +15,7 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'testcasemaintenance', component: TestcaseMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'applicationdetails', component: ApplicationDetailsComponent, canActivate: [AuthenticationGuard] },
 { path: 'loadTestReportDetails', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
-{ path: 'testsuite/create', component: TestSuiteCreationComponent, canActivate: [AuthenticationGuard] }];
+{ path: 'testsuite/create', component: TestSuiteCreationComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
