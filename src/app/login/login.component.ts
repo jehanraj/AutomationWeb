@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../shared/app.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +9,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
-  usorpwError = false;
 
-  constructor(private app: AppService, private router: Router) { }
+  private loginForm: FormGroup;
+  private loginFailed = false;
+
+  constructor(private app: AppService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.buildForm();
+  }
+
+  get formControls() { return this.loginForm.controls; }
+
+  buildForm() {
+    this.loginForm = this.formBuilder.group({
+      username: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.minLength(6), Validators.maxLength(20), Validators.required]),
+      rememberMe: new FormControl('')
+    });
   }
 
   loginUser() {
-    const user = { 'userName': this.username, 'password': this.password };
-    this.app.loginUser(user).subscribe(data => {
+    this.app.loginUser(this.loginForm.value).subscribe(data => {
       this.app.setUser(data);
       this.router.navigate(['/']);
     }, (error) => {
@@ -27,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.app.setUser('SUCCESS');
         this.router.navigate(['']);
       }
-      this.usorpwError = true;
+      this.loginFailed = true;
     });
   }
 }

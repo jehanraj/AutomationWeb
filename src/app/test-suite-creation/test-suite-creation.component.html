@@ -1,0 +1,162 @@
+<app-header></app-header>
+<div class="container-fluid body-content">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Test Scenario Creation</li>
+    </ol>
+  </nav>
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 mx-auto">
+      <div class="card drop-shadow mt-5">
+        <div class="card-body">
+          <form (ngSubmit)="createTestsuite()">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-6">
+                <label for="application">Application Name</label>
+                <div class="form-group">
+                  <select class="form-control classic" (change)="updateDropdowns()" name="application"
+                    id="application" [(ngModel)]="application">
+                    <option value="{{app.id}}" *ngFor="let app of applicationList">{{app.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-6">
+                <label for="application">Test Component</label>
+                <div class="form-group">
+                  <select class="form-control classic" name="component" id="component" [(ngModel)]="testcomponent" (change)="searchMapping()">
+                    <option value="{{component.id}}" *ngFor="let component of testComponentList">{{component.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-6">
+                <button class="btn btn-blue btn-center" (click)="open(content)">Add Component</button>
+              </div>
+            </div>
+            <div class="table-responsive" style="margin-top: 5%">
+              <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                  <tr>
+                    <th>Test order</th>
+                    <th>Screen Name</th>
+                    <th>Test Case</th>
+                    <th>Title 2</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let testScenario of testScenarioList;let i = index;">
+                    <td>
+                      <div *ngIf="testScenario?.isEdit; else orderLabel">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="testOrderNo_{{i}}" id="testOrderNo_{{i}}"
+                            [(ngModel)]="testScenario.testOrder">
+                        </div>
+                      </div>
+                      <ng-template #orderLabel>
+                        {{testScenario?.testOrder}}
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario?.isEdit; else screenLabel">
+                        <div class="form-group">
+                          <select class="form-control classic" name="screen_{{i}}"
+                            id="screen_{{i}}" [(ngModel)]="testScenario.screen">
+                            <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <ng-template #screenLabel>
+                        {{testScenario?.screen}}
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario?.isEdit; else testcaseLabel">
+                        <div class="form-group">
+                          <input [(ngModel)]="testScenario.testcase" id="testcaseName_{{i}}" name="testcaseName_{{i}}" class="form-control" type="text" />
+                        </div>
+                      </div>
+                      <ng-template #testcaseLabel>
+                        {{testScenario?.testcase}}
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario?.isEdit; else title">
+                        <div>
+                          <input [(ngModel)]="testScenario.title2" name="title2" class="form-control" type="text" />
+                        </div>
+                      </div>
+                      <ng-template #title>
+                        {{testScenario?.title2}}
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="testScenario?.isEdit; else notShow6">
+                        <button type="button" (click)="saveRow(i)" class="btn btn-blue">Save</button>
+                        <button type="button" (click)="cancel(i)" class="btn btn-blue">Cancel</button>
+                      </div>
+                      <ng-template #notShow6>
+                        <div>
+                          <fa name="pencil" size="1x" (click)="editRow(i)"></fa>
+                          <fa name="trash" size="1x" (click)="deleteRow(i)"></fa>
+                        </div>
+                      </ng-template>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6"><button type="button" (click)="addRow()" class="btn btn-blue">Add</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div><button type="submit" (click)="addRow(i)" class="btn btn-blue">Add</button></div> -->
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-2">
+                <button type="submit" (click)="createTestsuite()" class="btn btn-blue">Create TestSuite</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Test Component</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+          <div class="form-group">
+            <label for="application">Application Name</label>
+            <div class="form-group">
+              <select class="form-control classic" name="appName" id="appName"
+                [(ngModel)]="newTestComponent.application">
+                <option value="{{app.id}}" *ngFor="let app of applicationList">{{app.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+          <div class="form-group">
+            <label for="compName">Component Name</label>
+            <div class="input-group">
+              <input id="compName" class="form-control" name="compName"  [(ngModel)]="newTestComponent.componentName">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button type="button" class="btn btn-blue" (click)="saveComponent()">Save</button>
+  </div>
+</ng-template>

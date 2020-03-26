@@ -15,7 +15,7 @@ export class TestcaseMaintenanceComponent implements OnInit {
   file: File = null;
   appName: string;
   screenName: string;
-  applicationList: Observable<Lookup>;
+  applicationList: Observable<Array<Lookup>>;
   screenList: any;
   screenMap: any;
   fileName: string;

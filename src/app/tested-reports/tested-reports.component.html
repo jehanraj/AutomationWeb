@@ -24,7 +24,7 @@
             <option *ngFor="let app of screensList" value="{{app.id}}">{{app.name}}</option>
           </select> -->
           <ng-multiselect-dropdown [placeholder]="" [data]="screensList" [(ngModel)]="report.screenIDList"
-            id="screenIDList" name="screenIDList" [settings]="dropdownSettings_Screen" (onSelect)="onItemSelect($event)"
+            id="screenIDList" name="screenIDList" [settings]="dropdownSettingsScreen" (onSelect)="onItemSelect($event)"
             (onSelectAll)="onSelectAll($event)">
           </ng-multiselect-dropdown>
         </div>

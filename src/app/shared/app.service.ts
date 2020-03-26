@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Lookup } from './app.model';
+import { Lookup, ComponentMapping, TestScenario } from './app.model';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -13,8 +13,8 @@ export class AppService {
     return this.http.post(environment.baseurl + 'loginSubmit', user);
   }
 
-  getApplications(): Observable<Lookup> {
-    return this.http.get<Lookup>(environment.baseurl + 'applicationNames');
+  getApplications(): Observable<Array<Lookup>> {
+    return this.http.get<Array<Lookup>>(environment.baseurl + 'applicationNames');
   }
 
   getScreens(): Observable<any> {
@@ -79,5 +79,19 @@ export class AppService {
     formData.append('screenQuery', screenQuery);
     return this.http.post(environment.baseurl + 'updateScreenQuery', formData)
       .pipe((data) => data);
+  }
+  saveTestComponent(data: any) {
+    return this.http.post(environment.baseurl + 'testComponent', data);
+  }
+  getTestComponents(appId: number): Observable<Lookup> {
+    return this.http.get<Lookup>(environment.baseurl + 'testComponent/' + appId);
+  }
+
+  getComponentMapping(testid: number): Observable<Array<TestScenario>> {
+    return this.http.get<Array<TestScenario>>(environment.baseurl + 'testComponent/mapping/' + testid);
+  }
+
+  saveComponentMapping(data: ComponentMapping) {
+    return this.http.post(environment.baseurl + 'testComponent/mapping/', { data });
   }
 }
