@@ -20,6 +20,8 @@ import { TestedReportsComponent } from './tested-reports/tested-reports.componen
 import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TestdataFromdbMaintenanceComponent } from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
+import { AlertsModule } from 'angular-alert-module';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     TestSuiteMaintenanceComponent,
     ApplicationDetailsComponent,
     TestedReportsComponent,
-    TestcaseMaintenanceComponent
+    TestcaseMaintenanceComponent,
+    TestdataFromdbMaintenanceComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    AlertsModule.forRoot()
   ],
   providers: [AppService],
   bootstrap: [AppComponent],

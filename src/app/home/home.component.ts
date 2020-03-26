@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   private screenMap; any;
   appName: string;
   screenName: string;
+  dataFromDBCheckbox: boolean;
 
   constructor(private app: AppService) { }
 
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.screenList = this.screenMap[this.appName];
   }
   runTest() {
-    this.app.startTesting(this.appName, this.screenName).subscribe(date => {
+    this.app.startTesting(this.appName, this.screenName,this.dataFromDBCheckbox).subscribe(date => {
       console.log('test running');
     });
 

@@ -52,7 +52,7 @@ export class AppService {
       .pipe((data) => data);
   }
 
-  startTesting(appName: string, screenName: string) {
+  startTesting(appName: string, screenName: string, dataFromDBCheckbox: boolean) {
     return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName, {});
   }
 
@@ -71,5 +71,13 @@ export class AppService {
 
   setUser(user: any) {
     sessionStorage.setItem('auth_user', user);
+  }
+
+  updateScreenQuery(screenAppID: string, screenQuery: string) {
+    const formData: FormData = new FormData();
+    formData.append('screenAppID', screenAppID);
+    formData.append('screenQuery', screenQuery);
+    return this.http.post(environment.baseurl + 'updateScreenQuery', formData)
+      .pipe((data) => data);
   }
 }
