@@ -28,6 +28,15 @@
                   </select>
                 </div>
               </div>
+			  <div class="col-lg-2 col-md-2 col-sm-6">
+                <label for="application">Component Name</label>
+                <div class="form-group">
+                  <select class="form-control classic" name="component" id="component" [(ngModel)]="componentID" (change)="searchMapping()">
+                    <option value="{{component.id}}" *ngFor="let component of testComponentList">{{component.name}}</option>
+                  </select>
+                </div>
+              </div>
+              </div>
               <div class="col-lg-2 col-md-2 col-sm-6"> 
                 <div class="custom-control custom-checkbox checkbox-xl "> 
                   <div class="form-group">

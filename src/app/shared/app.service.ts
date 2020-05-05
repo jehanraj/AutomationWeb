@@ -52,8 +52,8 @@ export class AppService {
       .pipe((data) => data);
   }
 
-  startTesting(appName: string, screenName: string, dataFromDBCheckbox: boolean) {
-    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName +'&dataFromDBCheckbox='+ dataFromDBCheckbox , {});
+  startTesting(appName: string, screenName: string, componentID: string, dataFromDBCheckbox: boolean) {
+    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName + '&selectedComponentID=' + componentID +'&dataFromDBCheckbox='+ dataFromDBCheckbox , {});
   }
 
   getTestedReports(): any {
