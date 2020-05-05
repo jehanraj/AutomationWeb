@@ -1,0 +1,65 @@
+<app-header></app-header>
+<div class="container-fluid body-content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">UserAppMapping Maintenance</li>
+        </ol>
+    </nav>
+    <form>
+        <div class="row justify-content-left">
+            <div class="col-lg-2 col-md-2 col-sm-6">
+                <div class="form-group">
+                    <label for="application">Application Name</label>
+                    <ng-multiselect-dropdown [placeholder]="" [data]="applicationsList" [(ngModel)]="login.applicationsList"
+                        id="appList" name="appList" [settings]="dropdownSettings" (onSelect)="searchNDownload($event)"
+                        (onSelectAll)="searchNDownload($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6">
+                <div class="form-group">
+                    <label for="users">Users</label>
+                    <ng-multiselect-dropdown [placeholder]="" [data]="usersList" [(ngModel)]="login.usersList" id="userList"
+                        name="userList" [settings]="dropdownSettings" (onSelect)="searchNDownload($event)"
+                        (onSelectAll)="searchNDownload($event)" >
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6" style="margin-top: 1.75%">
+                <div class="form-group">
+                    <!-- <button type="submit" (click)="downloadMappingDetails()" class="btn btn-blue ">Download</button> -->
+                    <div>
+                        <a [href]="url" [download]="fileName">Download</a>
+                      </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-9 col-md-10 col-lg-10 mx-auto">
+                    <label for="mappingFile">File Upload</label>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
+                                name="mappingFile" id="mappingFile">
+                            <label class="custom-file-label" for="customFile">
+                                <span *ngIf="uploadedFileName">{{uploadedFileName}}</span>
+                                <span *ngIf="!uploadedFileName">Choose file </span>
+                            </label>
+                        </div>
+                        <div class="col-2 justify-content-center">
+                            <button type="submit" (click)="uploadUserMapping()" class="btn btn-blue ">Upload</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1.5%">
+                
+                <div class="col-4 justify-content-center"></div>
+                <div>
+                    <!-- <a [href]="templateurl" download="UserApplicationMapping.xlsx">Download Template</a> -->
+                    <!-- <a [href]="url" [download]="fileName">Download</a> -->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

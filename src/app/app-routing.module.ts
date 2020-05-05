@@ -8,16 +8,18 @@ import { TestSuiteCreationComponent } from './test-suite-creation/test-suite-cre
 import { TestedReportsComponent } from './tested-reports/tested-reports.component';
 import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-maintenance.component';
 import { AuthenticationGuard } from './shared/authentication.guard';
-import {TestdataFromdbMaintenanceComponent} from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
+import { TestdataFromdbMaintenanceComponent} from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
+import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
 { path: 'testsuite/maintenance', component: TestSuiteMaintenanceComponent },
 { path: 'testcasemaintenance', component: TestcaseMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'applicationdetails', component: ApplicationDetailsComponent, canActivate: [AuthenticationGuard] },
-{ path: 'loadTestReportDetails', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
-{ path: 'loadTestDataFromDBDetails', component: TestdataFromdbMaintenanceComponent, canActivate: [AuthenticationGuard] },
-{ path: 'testsuite/create', component: TestSuiteCreationComponent}];
+{ path: 'testedreports', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
+{ path: 'testdatafromdb/maintenance', component: TestdataFromdbMaintenanceComponent, canActivate: [AuthenticationGuard] },
+{ path: 'testsuite/create', component: TestSuiteCreationComponent},
+{ path: 'userappmapping/maintenance', component: UserappMappingMaintenanceComponent, canActivate: [AuthenticationGuard] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

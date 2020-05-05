@@ -24,6 +24,7 @@ import { TestedReportsComponent } from './tested-reports/tested-reports.componen
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { TestdataFromdbMaintenanceComponent } from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
 import { AlertsModule } from 'angular-alert-module';
+import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AlertsModule } from 'angular-alert-module';
     TestedReportsComponent,
     TestcaseMaintenanceComponent,
     TestdataFromdbMaintenanceComponent,
-    TestSuiteCreationComponent
+    TestSuiteCreationComponent,
+    UserappMappingMaintenanceComponent
   ],
   imports: [
     AppRoutingModule,

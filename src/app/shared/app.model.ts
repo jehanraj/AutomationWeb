@@ -33,3 +33,8 @@ export interface ComponentMapping {
     componentId?: number;
     componentMapping?: Array<TestScenario>;
 }
+
+export interface Login {
+    applicationsList?: string[];
+    usersList?: string[];
+}

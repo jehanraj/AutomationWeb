@@ -53,7 +53,7 @@ export class AppService {
   }
 
   startTesting(appName: string, screenName: string, dataFromDBCheckbox: boolean) {
-    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName, {});
+    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName +'&dataFromDBCheckbox='+ dataFromDBCheckbox , {});
   }
 
   getTestedReports(): any {
@@ -93,5 +93,13 @@ export class AppService {
 
   saveComponentMapping(data: ComponentMapping) {
     return this.http.post(environment.baseurl + 'testComponent/mapping/', { data });
+  }
+
+  getUserAppMappingData(): any {
+    return this.http.get(environment.baseurl + 'loadUserAppMappings');
+  }
+
+  postUserAppMapping(fileToUpload: File) {
+    return this.uploadFileForm('uploadUserAppMappingDetails', '', '', fileToUpload);
   }
 }

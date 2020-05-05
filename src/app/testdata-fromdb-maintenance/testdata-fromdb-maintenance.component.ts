@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../shared/app.service';
-import { Observable } from 'rxjs';
 import { Lookup } from '../shared/app.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';

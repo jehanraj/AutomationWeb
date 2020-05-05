@@ -13,7 +13,7 @@
           <label for="application">Application Name</label>
           <select class="form-control classic" id="application" name="application" [(ngModel)]="report.applicationID"
             #AppSelect (change)="onChangeLoadScreen(AppSelect.value)">
-            <option *ngFor="let app of applicationsList" value="{{app.id}}">{{app.name}}</option>
+              <option *ngFor="let app of applicationsList" value="{{app.id}}">{{app.name}}</option>
           </select>
         </div>
       </div>
