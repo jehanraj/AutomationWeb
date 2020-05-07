@@ -52,7 +52,7 @@ export class AppService {
       .pipe((data) => data);
   }
 
-  startTesting(appName: string, screenName: string, componentID: string, dataFromDBCheckbox: boolean) {
+  startTesting(appName: string, screenName: string, componentID: string, dataFromDBCheckbox: string) {
     return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName + '&selectedComponentID=' + componentID +'&dataFromDBCheckbox='+ dataFromDBCheckbox , {});
   }
 

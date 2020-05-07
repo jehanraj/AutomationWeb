@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   private screenMap; any;
   appName: string;
   screenName: string;
-  dataFromDBCheckbox: boolean;
+  dataFromDBCheckbox: string;
   testComponentList: Lookup;
   constructor(private app: AppService) { }
   applicationNameList: Array<Lookup>;
