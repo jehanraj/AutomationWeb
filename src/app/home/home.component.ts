@@ -13,13 +13,13 @@ export class HomeComponent implements OnInit {
   private applicationList: Observable<Array<Lookup>>;
   private screenList: any;
   private screenMap; any;
-  appName: string;
-  screenName: string;
+  appName: string = 'Choose Application';
+  screenName: string = 'Choose Screen';
   dataFromDBCheckbox: string;
   testComponentList: Lookup;
   constructor(private app: AppService) { }
   applicationNameList: Array<Lookup>;
-  componentID: string;
+  componentID: string = 'Choose Component';
 
   ngOnInit() {
     this.loadData();
