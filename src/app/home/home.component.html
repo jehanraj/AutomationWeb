@@ -11,27 +11,30 @@
         <div class="card-body">
           <form (ngSubmit)="runTest()">
             <div class="row">
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Application Name</label>
                 <div class="form-group">
                   <select class="form-control classic" (change)="updateScreensList()" name="application"
                     id="application" [(ngModel)]="appName">
+                    <option value="Choose Application" selected disabled>Choose Application</option>
                     <option value="{{app.name}}" *ngFor="let app of applicationList | async">{{app.name}}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Screen Name</label>
                 <div class="form-group">
                   <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName">
-                    <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
+                    <option value="Choose Screen" selected disabled>Choose Screen</option>
+                     <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
                   </select>
                 </div>
               </div>
-			        <div class="col-lg-2 col-md-2 col-sm-6">
+			        <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Component Name</label>
                 <div class="form-group">
                   <select class="form-control classic" name="component" id="component" [(ngModel)]="componentID" (change)="searchMapping()">
+                    <option value="Choose Component" selected disabled>Choose Component</option>
                     <option value="{{component.id}}" *ngFor="let component of testComponentList">{{component.name}}</option>
                   </select>
                 </div>
