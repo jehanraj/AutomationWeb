@@ -61,14 +61,14 @@
                       <div *ngIf="testScenario?.isEdit; else screenLabel">
                         <div class="form-group">
                           <select class="form-control classic" name="screen_{{i}}"
-                            id="screen_{{i}}" [(ngModel)]="testScenario.screen">
+                            id="screen_{{i}}" [(ngModel)]="testScenario.screen.screenName">
                             <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}
                             </option>
                           </select>
                         </div>
                       </div>
                       <ng-template #screenLabel>
-                        {{testScenario?.screen}}
+                        {{testScenario?.screen?.screenName}}
                       </ng-template>
                     </td>
                     <td>
@@ -113,7 +113,7 @@
             </div>
             <div class="row justify-content-center">
               <div class="col-2">
-                <button type="submit" (click)="createTestsuite()" class="btn btn-blue">Create TestSuite</button>
+                <button type="submit" class="btn btn-blue">Create TestSuite</button>
               </div>
             </div>
           </form>

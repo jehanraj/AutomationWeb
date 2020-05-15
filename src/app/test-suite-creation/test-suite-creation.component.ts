@@ -37,7 +37,7 @@ export class TestSuiteCreationComponent implements OnInit {
   }
 
   addRow() {
-    this.testScenario = { isEdit: true };
+    this.testScenario = { isEdit: true ,screen:{screenName:''}};
     this.testScenarioList.push(this.testScenario);
     return true;
   }
@@ -55,8 +55,10 @@ export class TestSuiteCreationComponent implements OnInit {
   createTestsuite() {
     if (!this.disableSave) {
       this.disableSave = true;
+      const app = this.applicationList.find(o => o.id == this.application);
       const data: ComponentMapping = {
         componentId: this.testcomponent,
+        applicationName: app.name,
         componentMapping: this.testScenarioList
       };
       this.app.saveComponentMapping(data).subscribe(result => {

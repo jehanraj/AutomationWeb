@@ -25,12 +25,18 @@ export interface TestResultsReports {
 export interface TestScenario {
     componentMappingId?: number;
     testOrder?: number;
-    screen?: number;
+    screen?: Screen;
     testcase?: string;
     isEdit?: boolean;
 }
+export interface Screen{
+    screenName?:string;
+    screenID?:number
+}
+
 export interface ComponentMapping {
     componentId?: number;
+    applicationName?: string;
     componentMapping?: Array<TestScenario>;
 }
 

@@ -27,6 +27,7 @@ export class AppService {
 
   postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File) {
     const formData: FormData = new FormData();
+    if(fileToUpload != null)
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('appName', appName);
     formData.append('appURL', appURL);
@@ -92,7 +93,7 @@ export class AppService {
   }
 
   saveComponentMapping(data: ComponentMapping) {
-    return this.http.post(environment.baseurl + 'testComponent/mapping/', { data });
+    return this.http.post(environment.baseurl + 'testComponent/mapping/', data );
   }
 
   getUserAppMappingData(): any {
