@@ -51,7 +51,7 @@
                 <button type="submit" (click)="uploadtestsuite()" class="btn btn-blue">Upload TestSuite</button>
               </div>
               <div class="col-4"></div>
-              <div class="col-2">
+              <div class="col-2" *ngIf = "this.screenName.length > 0">
                 <a [href]="url" [download]="fileName">Download TestSuite</a>
               </div>
             </div>

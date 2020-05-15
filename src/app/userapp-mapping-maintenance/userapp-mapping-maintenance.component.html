@@ -28,10 +28,9 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-6" style="margin-top: 1.75%">
                 <div class="form-group">
-                    <!-- <button type="submit" (click)="downloadMappingDetails()" class="btn btn-blue ">Download</button> -->
-                    <div>
-                        <a [href]="url" [download]="fileName">Download</a>
-                      </div>
+                    <div *ngIf="(this.login.usersList)?.length > 0 || (this.login.applicationsList)?.length > 0">
+                         <a [href]="url" [download]="fileName">Download</a>
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center">
