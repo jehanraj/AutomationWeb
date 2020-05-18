@@ -27,7 +27,7 @@ export class AppService {
 
   postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File) {
     const formData: FormData = new FormData();
-    if(fileToUpload != null)
+    if(fileToUpload != null)  
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('appName', appName);
     formData.append('appURL', appURL);
