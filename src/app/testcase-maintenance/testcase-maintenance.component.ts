@@ -13,8 +13,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class TestcaseMaintenanceComponent implements OnInit {
 
   file: File = null;
-  appName: string;
-  screenName: string;
+  appName = ''; //: string;
+  screenName = ''; //: string;
   applicationList: Observable<Array<Lookup>>;
   screenList: any;
   screenMap: any;
