@@ -43,7 +43,7 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
   }
 
   loadData() {
-    this.http.get(environment.baseurl + 'loadTestDataFromDBDetails/').subscribe(data => {
+    this.http.get(environment.baseurl + 'loadTestDataFromDBDetails/'+sessionStorage.auth_user).subscribe(data => {
       this.applicationsList = data['testAppsList'];
       this.screensList = data['testScreensList'];
     });
@@ -68,21 +68,20 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
       this.submitEnable = false;
       if(this.screenQuery.length > 0) {
         this.app.updateScreenQuery(this.screenID_App, this.screenQuery).subscribe(data => {
-          this.toastr.success('', 'Query Updated', {
-            timeOut: 3000
-          });
-          this.submitEnable = true;
+          this.toastr.success('Query Updated');
+          // this.toastr.success('Query Updated', '', {
+          //   timeOut: 3000
+          // });
         }, (error) => {
-          this.toastr.error('', 'Error during Query Update', {
+          this.toastr.error('Error during Query Update', 'Error', {
             timeOut: 3000
           });
-          this.submitEnable = true;
         });
+        this.submitEnable = true;
       } else {
         this.alerts.setMessage('Empty Query to Update','error');
         this.alerts.setDefaults('timeout',0);
       }
-      
     }
   }
 }

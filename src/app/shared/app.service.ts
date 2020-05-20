@@ -13,8 +13,12 @@ export class AppService {
     return this.http.post(environment.baseurl + 'loginSubmit', user);
   }
 
+  // getApplications(): Observable<Array<Lookup>> {
+  //   return this.http.get<Array<Lookup>>(environment.baseurl + 'applicationNames');
+  // }
+
   getApplications(): Observable<Array<Lookup>> {
-    return this.http.get<Array<Lookup>>(environment.baseurl + 'applicationNames');
+    return this.http.get<Array<Lookup>>(environment.baseurl + 'applicationNames/'+sessionStorage.auth_user);
   }
 
   getScreens(): Observable<any> {
@@ -53,13 +57,21 @@ export class AppService {
       .pipe((data) => data);
   }
 
-  startTesting(appName: string, screenName: string, componentID: string, dataFromDBCheckbox: string) {
-    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName + '&selectedComponentID=' + componentID +'&dataFromDBCheckbox='+ dataFromDBCheckbox , {});
+  // startTesting(appName: string, screenName: string, componentID: string, dataFromDBCheckbox: string) {
+  //   return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName + '&selectedComponentID=' + componentID +'&dataFromDBCheckbox='+ dataFromDBCheckbox , {});
+  // }
+
+  // getTestedReports(): any {
+  //   return this.http.get(environment.baseurl + 'loadTestReportDetails');
+  // }
+  startTesting(appName: string, screenName: string, componentID: string, dataFromDBCheckbox: string, userName: string) {
+    return this.http.post(environment.baseurl + 'startTest?selectedApplicationName=' + appName + '&selectedScreenName=' + screenName + '&selectedComponentID=' + componentID +'&dataFromDBCheckbox='+ dataFromDBCheckbox +'&userName='+ userName, {});
   }
 
   getTestedReports(): any {
-    return this.http.get(environment.baseurl + 'loadTestReportDetails');
+    return this.http.get(environment.baseurl + 'loadTestReportDetails/'+sessionStorage.auth_user);
   }
+
   downloadTestCase(appName: string, screenName: string) {
     const url = environment.baseurl + 'downloadTestCase?application=' + appName + '&screen=' + screenName;
     return this.http.get(url, { responseType: 'blob' });
@@ -96,8 +108,12 @@ export class AppService {
     return this.http.post(environment.baseurl + 'testComponent/mapping/', data );
   }
 
+  // getUserAppMappingData(): any {
+  //   return this.http.get(environment.baseurl + 'loadUserAppMappings');
+  // }
+
   getUserAppMappingData(): any {
-    return this.http.get(environment.baseurl + 'loadUserAppMappings');
+    return this.http.get(environment.baseurl + 'loadUserAppMappings/'+sessionStorage.auth_user);
   }
 
   postUserAppMapping(fileToUpload: File) {

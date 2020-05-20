@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     });
   }
   runTest() {
-    this.app.startTesting(this.appName, this.screenName,this.componentID,this.dataFromDBCheckbox).subscribe(date => {
+    this.app.startTesting(this.appName, this.screenName,this.componentID,this.dataFromDBCheckbox,sessionStorage.auth_user).subscribe(date => {
       console.log('test running');
     });
 

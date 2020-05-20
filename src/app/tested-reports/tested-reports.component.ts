@@ -84,7 +84,7 @@ export class TestedReportsComponent implements OnInit {
   }
 
   onChangeLoadScreen(value: string) {
-    this.http.get(environment.baseurl + 'loadTestReportDetails/' + value).subscribe(data => {
+    this.http.get(environment.baseurl + 'reloadloadTestReportDetails/'+sessionStorage.auth_user +'/'+ value).subscribe(data => {
       this.applicationsList = data['testAppsList'];
       this.screensList = data['testScreensList'];
       this.testuserList = data['testUsersList'];

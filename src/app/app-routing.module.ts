@@ -16,7 +16,7 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'testsuite/maintenance', component: TestSuiteMaintenanceComponent },
 { path: 'testcasemaintenance', component: TestcaseMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'applicationdetails', component: ApplicationDetailsComponent, canActivate: [AuthenticationGuard] },
-{ path: 'testedreports', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
+{ path: 'testedreports/reports', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
 { path: 'testdatafromdb/maintenance', component: TestdataFromdbMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'testsuite/create', component: TestSuiteCreationComponent},
 { path: 'userappmapping/maintenance', component: UserappMappingMaintenanceComponent, canActivate: [AuthenticationGuard] }];

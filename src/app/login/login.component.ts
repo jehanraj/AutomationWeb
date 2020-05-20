@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     this.app.loginUser(this.loginForm.value).subscribe(data => {
-      this.app.setUser(data);
+      this.app.setUser(this.loginForm.value.userName);
       this.router.navigate(['/']);
     }, (error) => {
       if (error.error.text === 'SUCCESS') {
-        this.app.setUser('SUCCESS');
+       // this.app.setUser('SUCCESS');
+       this.app.setUser(this.loginForm.value.userName);
         this.router.navigate(['']);
       }
       this.loginFailed = true;
