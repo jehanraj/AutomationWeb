@@ -54,6 +54,7 @@ export class TestSuiteCreationComponent implements OnInit {
     this.app.confirm('Please confirm..', 'Do you really delete this records ... ?')
     .then((confirmed) => {  if(confirmed) {
               this.app.deleteComponentMapping(data).subscribe(result => {
+                this.testScenarioList.splice(index, 1)
                 this.toastr.warning('Row deleted successfully', 'Delete row');
                 this.disableSave = false;
               }, (error) => {
@@ -62,7 +63,6 @@ export class TestSuiteCreationComponent implements OnInit {
               })}} 
           )
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
-    this.searchMapping();
   }
 
   saveRow(rowIndex: number) {
@@ -81,12 +81,12 @@ export class TestSuiteCreationComponent implements OnInit {
       this.app.saveComponentMapping(data).subscribe(result => {
         this.toastr.success('Saved Successfully');
         this.disableSave = false;
+        this.searchMapping();
       }, (error) => {
         console.log('error');
         this.disableSave = false;
       });
     }
-    this.searchMapping();
   }
 
   open(content) {
