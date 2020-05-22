@@ -25,6 +25,7 @@ export class TestSuiteCreationComponent implements OnInit {
   clonedScenarioList: Array<TestScenario> = [];
   newTestComponent: any = {};
   disableSave = false;
+  testSearchList: Array<any> = [];
 
   constructor(private app: AppService, private toastr: ToastrService, private modalService: NgbModal) { }
 
@@ -128,6 +129,7 @@ export class TestSuiteCreationComponent implements OnInit {
   searchMapping() {
     this.app.getComponentMapping(this.testcomponent).subscribe(data => {
       this.testScenarioList = data;
+      this.testSearchList = data;
     });
   }
 }
