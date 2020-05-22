@@ -12,7 +12,7 @@
         <div class="card-body">
           <form (ngSubmit)="createTestsuite()">
             <div class="row">
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-2 col-sm-6">
                 <label for="application">Application Name</label>
                 <div class="form-group">
                   <select class="form-control classic" (change)="updateDropdowns()" name="application"
@@ -21,7 +21,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-6">
+              <div class="col-lg-3 col-md-2 col-sm-6">
                 <label for="application">Test Component</label>
                 <div class="form-group">
                   <select class="form-control classic" name="component" id="component" [(ngModel)]="testcomponent" (change)="searchMapping()">
