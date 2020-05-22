@@ -50,7 +50,7 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
   }
 
   onChangeLoadScreen(value: string) {
-    this.http.get(environment.baseurl + 'loadScreensForApps/' + value).subscribe(data => {
+    this.http.get(environment.baseurl + 'loadScreensForApps/' + value +'/'+sessionStorage.auth_user).subscribe(data => {
       this.applicationsList = data['testAppsList'];
       this.screensList = data['testScreensList'];
       this.screenQueryAuto = data['screenQuery'];
