@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Lookup, TestScenario, ComponentMapping } from '../shared/app.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-test-suite-creation',
@@ -43,9 +44,25 @@ export class TestSuiteCreationComponent implements OnInit {
   }
 
   deleteRow(index) {
-    this.testScenarioList.splice(index, 1);
-    this.toastr.warning('Row deleted successfully', 'Delete row');
-    return true;
+    const app = this.applicationList.find(o => o.id == this.application);
+    const data: ComponentMapping = {
+      componentId: this.testcomponent,
+      applicationName: app.name,
+      componentMapping: this.testScenarioList.splice(index, 1)
+    };
+    
+    this.app.confirm('Please confirm..', 'Do you really delete this records ... ?')
+    .then((confirmed) => {  if(confirmed) {
+              this.app.deleteComponentMapping(data).subscribe(result => {
+                this.toastr.warning('Row deleted successfully', 'Delete row');
+                this.disableSave = false;
+              }, (error) => {
+                console.log('error');
+                this.disableSave = false;
+              })}} 
+          )
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    this.searchMapping();
   }
 
   saveRow(rowIndex: number) {
@@ -69,6 +86,7 @@ export class TestSuiteCreationComponent implements OnInit {
         this.disableSave = false;
       });
     }
+    this.searchMapping();
   }
 
   open(content) {

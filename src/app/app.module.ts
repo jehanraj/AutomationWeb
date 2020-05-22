@@ -25,6 +25,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { TestdataFromdbMaintenanceComponent } from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
 import { AlertsModule } from 'angular-alert-module';
 import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenanc
     TestcaseMaintenanceComponent,
     TestdataFromdbMaintenanceComponent,
     TestSuiteCreationComponent,
-    UserappMappingMaintenanceComponent
+    UserappMappingMaintenanceComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -61,6 +63,7 @@ import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenanc
     AlertsModule.forRoot()
   ],
   providers: [AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogComponent ],
 })
 export class AppModule { }

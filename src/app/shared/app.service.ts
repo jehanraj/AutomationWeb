@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Lookup, ComponentMapping, TestScenario } from './app.model';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Injectable()
 export class AppService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private modalService: NgbModal) { }
 
   loginUser(user: any) {
     return this.http.post(environment.baseurl + 'loginSubmit', user);
@@ -118,5 +120,24 @@ export class AppService {
 
   postUserAppMapping(fileToUpload: File) {
     return this.uploadFileForm('uploadUserAppMappingDetails', '', '', fileToUpload);
+  }
+
+  deleteComponentMapping(data: ComponentMapping) {
+    return this.http.put(environment.baseurl + 'testComponent/deleteMapping/', data);
+  }
+
+  public confirm(
+    title: string,
+    message: string,
+    btnOkText: string = 'OK',
+    btnCancelText: string = 'Cancel',
+    dialogSize: 'sm'|'lg' = 'sm'): Promise<boolean> {
+    const modalRef = this.modalService.open(ConfirmationDialogComponent, { size: dialogSize });
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.message = message;
+    modalRef.componentInstance.btnOkText = btnOkText;
+    modalRef.componentInstance.btnCancelText = btnCancelText;
+
+    return modalRef.result;
   }
 }
