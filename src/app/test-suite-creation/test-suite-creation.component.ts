@@ -57,6 +57,7 @@ export class TestSuiteCreationComponent implements OnInit {
                 this.testScenarioList.splice(index, 1)
                 this.toastr.warning('Row deleted successfully', 'Delete row');
                 this.disableSave = false;
+                this.searchMapping();
               }, (error) => {
                 console.log('error');
                 this.disableSave = false;
