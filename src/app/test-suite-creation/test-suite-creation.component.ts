@@ -33,7 +33,7 @@ export class TestSuiteCreationComponent implements OnInit {
     this.app.getApplications().subscribe(data => {
       this.applicationList = data;
     });
-    this.app.getScreens().subscribe(data => {
+    this.app.getScreensForTestSuiteCreation().subscribe(data => {
       this.screenMap = data;
     });
   }
@@ -123,6 +123,7 @@ export class TestSuiteCreationComponent implements OnInit {
     this.screenList = this.screenMap[app.name];
     this.app.getTestComponents(this.application).subscribe(data => {
       this.testComponentList = data;
+      this.testScenarioList = [];
     });
   }
 

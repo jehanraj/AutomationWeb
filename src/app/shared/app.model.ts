@@ -44,3 +44,12 @@ export interface Login {
     applicationsList?: string[];
     usersList?: string[];
 }
+
+export interface DashBoard {
+    applicationID?: number;
+    screenID?: string;
+    testStartDate?: Date;
+    testEndDate?: Date;
+    screenIDList?: string[];
+    monthDate?: string;
+}

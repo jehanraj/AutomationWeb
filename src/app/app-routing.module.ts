@@ -10,16 +10,18 @@ import { TestcaseMaintenanceComponent } from './testcase-maintenance/testcase-ma
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { TestdataFromdbMaintenanceComponent} from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
 import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
-{ path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
+{ path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
 { path: 'testsuite/maintenance', component: TestSuiteMaintenanceComponent },
 { path: 'testcasemaintenance', component: TestcaseMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'applicationdetails', component: ApplicationDetailsComponent, canActivate: [AuthenticationGuard] },
 { path: 'testedreports/reports', component: TestedReportsComponent, canActivate: [AuthenticationGuard] },
 { path: 'testdatafromdb/maintenance', component: TestdataFromdbMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'testsuite/create', component: TestSuiteCreationComponent},
-{ path: 'userappmapping/maintenance', component: UserappMappingMaintenanceComponent, canActivate: [AuthenticationGuard] }];
+{ path: 'userappmapping/maintenance', component: UserappMappingMaintenanceComponent, canActivate: [AuthenticationGuard] },
+{ path: '', component: DashboardComponent, canActivate: [AuthenticationGuard] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

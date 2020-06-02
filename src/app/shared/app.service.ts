@@ -27,6 +27,10 @@ export class AppService {
     return this.http.get(environment.baseurl + 'getAllScreenDetails');
   }
 
+  getScreensForTestSuiteCreation(): Observable<any> {
+    return this.http.get(environment.baseurl + 'getAllScreenDetailsForTestSuite');
+  }
+
   getApplicationScreens() {
     return this.http.get(environment.baseurl + 'loginSubmit');
   }

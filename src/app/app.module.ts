@@ -26,6 +26,7 @@ import { TestdataFromdbMaintenanceComponent } from './testdata-fromdb-maintenanc
 import { AlertsModule } from 'angular-alert-module';
 import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     TestdataFromdbMaintenanceComponent,
     TestSuiteCreationComponent,
     UserappMappingMaintenanceComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
