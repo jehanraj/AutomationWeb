@@ -15,8 +15,8 @@ import { Login } from '../shared/app.model';
 })
 export class UserappMappingMaintenanceComponent implements OnInit {
 
-  applicationsList: string[];;
-  usersList: string[];;
+  applicationsList: string[];
+  usersList: string[];
   mappingFile: File = null;
   uploadedFileName: string;
   dropdownSettings: IDropdownSettings;
@@ -25,6 +25,8 @@ export class UserappMappingMaintenanceComponent implements OnInit {
   url;
   templateurl;
   login: Login = {};
+  errorUsersList: string[];
+  message:string;
 
   constructor(private app: AppService, private http: HttpClient, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
 
@@ -80,6 +82,12 @@ export class UserappMappingMaintenanceComponent implements OnInit {
         });
         this.submitEnable = true;
       }, (error) => {
+        this.errorUsersList = error.error['errorUsersList'];
+        this.message = error.error['message'];
+        this.toastr.error(this.message, 'Only Few data are updated', {
+          timeOut: 9000
+        });
+
         this.submitEnable = true;
       });
     }

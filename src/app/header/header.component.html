@@ -34,8 +34,12 @@
       <span></span>
       <div class="navbar-brand"><img class="navbar-brand" src="../../assets/headericon.png" width="42"
           height="42">Automated Testing Tool</div>
-      <div class =" pull-right"> <a routerLink="/login" class="nav-link">Logout</a></div>
       <ul id="menu">
+        <li>
+          <div class="float-lg">
+            <h4 style="color: white;text-align: right;"><i class="fa fa-user-o" aria-hidden="true"></i> {{currentUser}}</h4>
+          </div>
+        </li>
         <a routerLink="">
           <li>Home</li>
         </a>
@@ -60,6 +64,8 @@
         <a routerLink="/userappmapping/maintenance">
           <li>UserAppMapping Maintenance</li>
         </a>
+        <div class="float-lg-right"> <a routerLink="/login" class="nav-link"><i class="fa fa-sign-out"
+              aria-hidden="true"></i> Logout</a></div>
       </ul>
     </div>
   </div>

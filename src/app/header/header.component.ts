@@ -8,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   private isCollapsed = true;
+  currentUser: String;
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit() {
+    this.currentUser = sessionStorage.auth_user;
   }
 
   logout() {

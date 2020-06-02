@@ -34,13 +34,13 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-9 col-md-10 col-lg-10 mx-auto">
+                <div class="mx-auto">
                     <label for="mappingFile">File Upload</label>
                     <div class="form-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
                                 name="mappingFile" id="mappingFile">
-                            <label class="custom-file-label" for="customFile">
+                            <label class="custom-file-label input-group-text" for="mappingFile">
                                 <span *ngIf="uploadedFileName">{{uploadedFileName}}</span>
                                 <span *ngIf="!uploadedFileName">Choose file </span>
                             </label>
@@ -54,10 +54,13 @@
             <div class="row" style="margin-top: 1.5%">
                 
                 <div class="col-4 justify-content-center"></div>
-                <div>
+               
                     <!-- <a [href]="templateurl" download="UserApplicationMapping.xlsx">Download Template</a> -->
                     <!-- <a [href]="url" [download]="fileName">Download</a> -->
-                </div>
+                <!-- <div *ngIf="(errorUsersList)?.length > 0">
+                    <p *ngFor="let element of errorUsersList">{{errorUsersList | json}}</p>
+                    <option *ngFor="let app of errorUsersList" value="{{app}}">{{app}}</option>
+                </div> -->
             </div>
         </div>
     </form>

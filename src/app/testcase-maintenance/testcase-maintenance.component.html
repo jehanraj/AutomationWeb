@@ -38,7 +38,10 @@
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)"
                       name="testFile" id="testFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label input-group-text" for="customFile">
+                      <span *ngIf="uploadedFileName">{{uploadedFileName}}</span>
+                      <span *ngIf="!uploadedFileName">Choose file </span>
+                    </label>
                   </div>
                 </div>
               </div>

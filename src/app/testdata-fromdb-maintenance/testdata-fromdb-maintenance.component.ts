@@ -25,7 +25,7 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
   application_id = '';
   screenQuery = '';
   submitEnable = true;
-
+  
   constructor(private app: AppService, private toastr: ToastrService, private http: HttpClient, private sanitizer: DomSanitizer,private alerts: AlertsService) { }
   
 
@@ -54,6 +54,7 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
       this.applicationsList = data['testAppsList'];
       this.screensList = data['testScreensList'];
       this.screenQueryAuto = data['screenQuery'];
+      this.screenID_App = data['screenID_App'];
     });
   }
 
@@ -67,6 +68,7 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
     if (this.submitEnable) {
       this.submitEnable = false;
       if(this.screenQuery.length > 0) {
+        console.log("Dropdown selection:", this.screenID_App);
         this.app.updateScreenQuery(this.screenID_App, this.screenQuery).subscribe(data => {
           this.toastr.success('Query Updated');
           // this.toastr.success('Query Updated', '', {
