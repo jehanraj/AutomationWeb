@@ -1,0 +1,71 @@
+<app-header> </app-header>
+<div class="container body-content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="home">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">DashBoard</li>
+        </ol>
+      </nav>
+      <form>
+        <div class="row justify-content-left">
+          <div class="col-lg-2 col-md-2 col-sm-6">
+            <div class="form-group">
+                <label for="application">Application Name</label>
+                <select class="form-control classic" id="application" name="application" [(ngModel)]="dashBoardReport.applicationID"
+                  #AppSelect (change)="onChangeLoadScreen(AppSelect.value)">
+                    <option *ngFor="let app of applicationsList" value="{{app.id}}">{{app.name}}</option>
+                </select>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-6">
+            <div class="form-group">
+              <label for="screen">Screen Name</label>
+              <!-- <select class="form-control classic" id="screen" name="screen" multiple="true" [(ngModel)]="report.screenID">
+                <option *ngFor="let app of screensList" value="{{app.id}}">{{app.name}}</option>
+              </select> -->
+              <ng-multiselect-dropdown [placeholder]="" [data]="screensList" [(ngModel)]="dashBoardReport.screenIDList"
+                id="screenIDList" name="screenIDList" [settings]="dropdownSettingsScreen" (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-6">
+            <div class="form-group">
+              <label for="testStartDate">Test Started Date</label>
+              <input class="form-control" [owlDateTimeTrigger]="testStartDate" [owlDateTime]="testStartDate"
+                [(ngModel)]="dashBoardReport.testStartDate" name="testStartDate" id="testStartDate">
+              <owl-date-time #testStartDate></owl-date-time>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-6">
+            <div class="form-group">
+              <label for="testEndDate">Test End Date</label>
+              <input class="form-control" [owlDateTimeTrigger]="testEndDate" [owlDateTime]="testEndDate"
+                [(ngModel)]="dashBoardReport.testEndDate" name="testEndDate" id="testEndDate">
+              <owl-date-time #testEndDate></owl-date-time>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-4">
+            <label for="applicationURL">Month/Date</label>
+            <select class="form-control" id="monthDate" name="monthDate" [(ngModel)]="dashBoardReport.monthDate"
+              value="{{monthDate}}">
+              <option>Month</option>
+              <option>Date</option>
+            </select>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-6">
+            <button type="submit" (click)="dashBoardData()" class="btn btn-blue ">Search</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="chart-diplay">
+        <div style="width: 70%">
+          <canvas id="bar"></canvas>
+        </div>
+      
+        <!-- <div style="width: 100%">
+          <canvas id="pie"></canvas>
+        </div> -->
+      </div>
+</div>
