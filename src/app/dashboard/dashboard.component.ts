@@ -111,6 +111,20 @@ getDashboardData() {
   return this.http.post(environment.baseurl + 'loadDashBoardDetails', this.dashBoardReport);
 }
 
+onChangeLoadScreen(value: string) {
+  this.http.get(environment.baseurl + 'reloadloadTestReportDetails/'+sessionStorage.auth_user +'/'+ value).subscribe(data => {
+    this.applicationsList = data['testAppsList'];
+    this.screensList = data['testScreensList'];
+  });
+}
+
+onItemSelect(item: any) {
+  console.log('onItemSelect:' + item);
+}
+onSelectAll(items: any) {
+  console.log('onSelectAll:' + items);
+}
+
 dashBoardData() {
 if (this.chart) this.chart.destroy();
 
