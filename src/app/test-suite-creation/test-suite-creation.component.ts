@@ -25,7 +25,7 @@ export class TestSuiteCreationComponent implements OnInit {
   clonedScenarioList: Array<TestScenario> = [];
   newTestComponent: any = {};
   disableSave = false;
-  testSearchList: Array<any> = [];
+  testSearch: String = "";
 
   constructor(private app: AppService, private toastr: ToastrService, private modalService: NgbModal) { }
 
@@ -39,7 +39,7 @@ export class TestSuiteCreationComponent implements OnInit {
   }
 
   addRow() {
-    this.testScenario = { isEdit: true ,screen:{screenName:''}};
+    this.testScenario = { isEdit: true , testOrder:this.testScenarioList.length+1, screen:{screenName:''}};
     this.testScenarioList.push(this.testScenario);
     return true;
   }
@@ -55,10 +55,9 @@ export class TestSuiteCreationComponent implements OnInit {
     this.app.confirm('Please confirm..', 'Do you really delete this records ... ?')
     .then((confirmed) => {  if(confirmed) {
               this.app.deleteComponentMapping(data).subscribe(result => {
-                this.testScenarioList.splice(index, 1)
+               
                 this.toastr.warning('Row deleted successfully', 'Delete row');
                 this.disableSave = false;
-                this.searchMapping();
               }, (error) => {
                 console.log('error');
                 this.disableSave = false;
@@ -102,6 +101,7 @@ export class TestSuiteCreationComponent implements OnInit {
       console.log(error);
     });
     this.modalService.dismissAll();
+    this.updateDropdowns();
   }
   editRow(index: number) {
     this.testScenarioList[index].isEdit = true;
@@ -130,7 +130,10 @@ export class TestSuiteCreationComponent implements OnInit {
   searchMapping() {
     this.app.getComponentMapping(this.testcomponent).subscribe(data => {
       this.testScenarioList = data;
-      this.testSearchList = data;
+      if(data.length > 0)
+      this.testSearch = "Update";
+      else
+      this.testSearch = "New";
     });
   }
 }
