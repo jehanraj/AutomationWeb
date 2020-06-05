@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     });
   }
   updateScreensList() {
-    this.screenName = '';
+    this.screenName = 'Choose Screen';
     this.screenList = this.screenMap[this.appName];
     const app = this.applicationNameList.find(o => o.name == this.appName);
     this.app.getTestComponents(app.id).subscribe(data => {
@@ -47,5 +47,13 @@ export class HomeComponent implements OnInit {
       console.log('test running');
     });
 
+  }
+
+  changeComponent() {
+    this.screenName = 'Choose Screen';
+  }
+
+  changeScreen() {
+    this.componentID = 'Choose Component';
   }
 }

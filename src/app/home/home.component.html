@@ -24,7 +24,7 @@
               <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Screen Name</label>
                 <div class="form-group">
-                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName">
+                  <select class="form-control classic" name="screen" id="screen" [(ngModel)]="screenName" (change)="changeScreen()">
                     <option value="Choose Screen" selected disabled>Choose Screen</option>
                      <option value="{{screen}}" *ngFor="let screen of screenList">{{screen}}</option>
                   </select>
@@ -33,7 +33,7 @@
 			        <div class="col-lg-3 col-md-3 col-sm-6">
                 <label for="application">Component Name</label>
                 <div class="form-group">
-                  <select class="form-control classic" name="component" id="component" [(ngModel)]="componentID" (change)="searchMapping()">
+                  <select class="form-control classic" name="component" id="component" [(ngModel)]="componentID" (change)="changeComponent()">
                     <option value="Choose Component" selected disabled>Choose Component</option>
                     <option value="{{component.id}}" *ngFor="let component of testComponentList">{{component.name}}</option>
                   </select>

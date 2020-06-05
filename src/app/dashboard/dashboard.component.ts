@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   dashBoardReport: DashBoard = {};
   rowData: Observable<any>;
   monthDate = 'Month';
+  doughnut: any;
 
   columnDefs = [
     { headerName: 'Application', field: 'testRAppName' },
@@ -133,6 +134,8 @@ this.getDashboardData().subscribe(data => {
     let passedData = data[0].passedData;
     let failedData = data[0].failedData;
     let weatherDates =  data[0].month;
+    let passFail = data[0].passFail;
+    let todayTotalCase = data[0].todayTotalCase;
 
       this.chart = new Chart('bar', {
         type: 'bar',
@@ -150,7 +153,7 @@ this.getDashboardData().subscribe(data => {
               type: 'bar',
               label: 'Total Test Cases',
               data: totalCase,
-              backgroundColor: 'rgba(255,0,255,0.4)',
+              backgroundColor: 'rgba(0,0,255,0.4)',
               borderColor: 'rgba(255,0,255,0.4)',
               fill: true,
             },
@@ -158,7 +161,7 @@ this.getDashboardData().subscribe(data => {
               type: 'line',
               label: 'Passed Data',
               
-              borderColor: 'rgba(0,0,255,0.4)',
+              borderColor: 'rgb(255,165,0)',
               data: passedData,
               fill: true,
               },
@@ -166,13 +169,37 @@ this.getDashboardData().subscribe(data => {
               type: 'line',
               label: 'Failed Data',
               
-              borderColor: 'rgba(255, 0, 0, 0.3)',
+              borderColor: 'rgb(255,0,0)',
               data: failedData,
               fill: true,
               },
           ]
         }
       });
+
+      this.doughnut =  new Chart('doughnut',{
+        type: 'doughnut',
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: 'Total test cases executed today: ' + todayTotalCase
+          },legend: {
+            position: 'top',
+          },animation: {
+            animateScale: true,
+            animateRotate: true
+          }
+        },
+        data: {
+          datasets: [{
+            data: passFail,
+            backgroundColor: ["orange","red"],
+            label: 'Dataset 1'
+          }],
+          labels: ["Pass","Fail"]
+        }
+      })
   });
 }
 
