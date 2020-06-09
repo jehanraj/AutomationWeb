@@ -58,6 +58,7 @@ export class TestSuiteCreationComponent implements OnInit {
                
                 this.toastr.warning('Row deleted successfully', 'Delete row');
                 this.disableSave = false;
+                this.searchMapping();
               }, (error) => {
                 console.log('error');
                 this.disableSave = false;
