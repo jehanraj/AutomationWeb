@@ -42,7 +42,7 @@ export class AppService {
     formData.append('appName', appName);
     formData.append('appURL', appURL);
     formData.append('appBrowser', appBrowser);
-    return this.http.post(environment.baseurl + 'updateApplicationDetails', formData)
+    return this.http.post(environment.baseurl + 'updateApplicationDetails/'+sessionStorage.auth_user, formData)
       .pipe((data) => data);
   }
 
@@ -100,7 +100,7 @@ export class AppService {
       .pipe((data) => data);
   }
   saveTestComponent(data: any) {
-    return this.http.post(environment.baseurl + 'testComponent', data);
+    return this.http.post(environment.baseurl + 'testComponent/'+sessionStorage.auth_user, data);
   }
   getTestComponents(appId: number): Observable<Lookup> {
     return this.http.get<Lookup>(environment.baseurl + 'testComponent/' + appId);
@@ -111,7 +111,7 @@ export class AppService {
   }
 
   saveComponentMapping(data: ComponentMapping) {
-    return this.http.post(environment.baseurl + 'testComponent/mapping/', data );
+    return this.http.post(environment.baseurl + 'testComponent/mapping/'+sessionStorage.auth_user, data );
   }
 
   // getUserAppMappingData(): any {

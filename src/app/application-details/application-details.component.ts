@@ -58,8 +58,9 @@ export class ApplicationDetailsComponent implements OnInit {
       this.toastr.success('', 'Upload Success', {
         timeOut: 3000
       });
+      this.search();
     });
-    this.search();
+    
   }
   handleFileInput(files: FileList) {
     this.screenNamesFile = files.item(0);
