@@ -8,6 +8,7 @@ export interface Application {
     name: string;
     url: string;
     browser: string;
+    dB: string;
     Sname: string;
 }
 

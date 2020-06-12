@@ -35,13 +35,14 @@ export class AppService {
     return this.http.get(environment.baseurl + 'loginSubmit');
   }
 
-  postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File) {
+  postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File, appDB: string) {
     const formData: FormData = new FormData();
     if(fileToUpload != null)  
     formData.append('file', fileToUpload, fileToUpload.name);
     formData.append('appName', appName);
     formData.append('appURL', appURL);
     formData.append('appBrowser', appBrowser);
+    formData.append('appDB', appDB);
     return this.http.post(environment.baseurl + 'updateApplicationDetails/'+sessionStorage.auth_user, formData)
       .pipe((data) => data);
   }

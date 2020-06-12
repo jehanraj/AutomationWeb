@@ -23,6 +23,8 @@ export class ApplicationDetailsComponent implements OnInit {
   fileName: string;
   url;
   screenUrl;
+  appDB = 'Select';
+  applicationName = "new"
 
   columnDefs = [
     { headerName: 'Screen Name', field: 'screenName', default: 'No Data Found' }
@@ -48,19 +50,24 @@ export class ApplicationDetailsComponent implements OnInit {
       this.appURL = data[0].applicationURL;
       this.appName = data[0].applicationName;
       this.appBrowser = data[0].applicationBrowser;
+      this.appDB = data[0].applicationDataBase;
+      this.applicationName = "existing"
     });
     this.download();
   }
 
   updateApplicationDetails() {
-    this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser, this.screenNamesFile).subscribe(data => {
-      console.log(data);
-      this.toastr.success('', 'Upload Success', {
-        timeOut: 3000
+    if(this.applicationName == 'new' && this.screenNamesFile == null) {
+      this.toastr.error('Screen details are mandatory for new application');
+    } else {
+      this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser, this.screenNamesFile, this.appDB).subscribe(data => {
+        console.log(data);
+        this.toastr.success('', 'Upload Success', {
+          timeOut: 3000
+        });
+        this.search();
       });
-      this.search();
-    });
-    
+   }
   }
   handleFileInput(files: FileList) {
     this.screenNamesFile = files.item(0);
@@ -83,5 +90,7 @@ export class ApplicationDetailsComponent implements OnInit {
     });
   }
 
-
+  reloadPage() {
+    window.location.reload();
+ }
 }
