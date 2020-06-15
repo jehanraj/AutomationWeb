@@ -67,7 +67,7 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
   updateScreenQuery() {
     if (this.submitEnable) {
       this.submitEnable = false;
-      if(this.screenQuery.length > 0) {
+      // if(this.screenQuery.length > 0) {
         console.log("Dropdown selection:", this.screenID_App);
         this.app.updateScreenQuery(this.screenID_App, this.screenQuery).subscribe(data => {
           this.toastr.success('Query Updated');
@@ -80,10 +80,10 @@ export class TestdataFromdbMaintenanceComponent implements OnInit {
           });
         });
         this.submitEnable = true;
-      } else {
-        this.alerts.setMessage('Empty Query to Update','error');
-        this.alerts.setDefaults('timeout',0);
-      }
+      // } else {
+      //   this.alerts.setMessage('Empty Query to Update','error');
+      //   this.alerts.setDefaults('timeout',0);
+      // }
     }
   }
 }
