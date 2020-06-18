@@ -32,6 +32,9 @@ export class ApplicationDetailsComponent implements OnInit {
 
   rowData: Observable<Application>;
   appURL: string;
+  dataBaseURL: string;
+  dataBaseUserName: string;
+  dataBasePassword: string;
   
   constructor(private app: AppService, private http: HttpClient, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
 
@@ -52,6 +55,9 @@ export class ApplicationDetailsComponent implements OnInit {
       this.appBrowser = data[0].applicationBrowser;
       this.appDB = data[0].applicationDataBase;
       this.applicationName = "existing"
+      this.dataBaseURL = data[0].dataBaseURL;
+      this.dataBaseUserName = data[0].dataBaseUserName;
+      this.dataBasePassword = data[0].dataBasePassword;
     });
     this.download();
   }
@@ -59,8 +65,13 @@ export class ApplicationDetailsComponent implements OnInit {
   updateApplicationDetails() {
     if(this.applicationName == 'new' && this.screenNamesFile == null) {
       this.toastr.error('Screen details are mandatory for new application');
+    } else if (this.appDB != "Select" && (this.dataBaseURL == '' || this.dataBaseUserName == ''
+            || this.dataBasePassword == '')) {
+              this.toastr.error('Database URL, Username, Password mandatory for the selected Database');       
     } else {
-      this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser, this.screenNamesFile, this.appDB).subscribe(data => {
+      this.app.postApplicationDetails(this.appName, this.appURL, this.appBrowser,
+         this.screenNamesFile, this.appDB, this.dataBaseURL, this.dataBaseUserName, 
+         this.dataBasePassword ).subscribe(data => {
         console.log(data);
         this.toastr.success('', 'Upload Success', {
           timeOut: 3000

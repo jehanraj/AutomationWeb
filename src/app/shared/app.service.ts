@@ -35,7 +35,8 @@ export class AppService {
     return this.http.get(environment.baseurl + 'loginSubmit');
   }
 
-  postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File, appDB: string) {
+  postApplicationDetails(appName: string, appURL: string, appBrowser: string, fileToUpload: File, 
+    appDB: string,dataBaseURL: string,dataBaseUserName: string,dataBasePassword: string) {
     const formData: FormData = new FormData();
     if(fileToUpload != null)  
     formData.append('file', fileToUpload, fileToUpload.name);
@@ -43,7 +44,16 @@ export class AppService {
     formData.append('appURL', appURL);
     formData.append('appBrowser', appBrowser);
     formData.append('appDB', appDB);
-    return this.http.post(environment.baseurl + 'updateApplicationDetails/'+sessionStorage.auth_user, formData)
+    if(appDB != "Select")  {
+      formData.append('dataBaseURL', dataBaseURL);
+      formData.append('dataBaseUserName', dataBaseUserName);
+      formData.append('dataBasePassword', dataBasePassword);
+    } else {
+      formData.append('dataBaseURL', '');
+      formData.append('dataBaseUserName', '');
+      formData.append('dataBasePassword', '');
+    }
+    return this.http.post(environment.baseurl + 'saveApplicationDetails/'+sessionStorage.auth_user, formData)
       .pipe((data) => data);
   }
 

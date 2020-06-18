@@ -4,12 +4,13 @@ export interface Lookup {
 }
 
 export interface Application {
-    id: number;
-    name: string;
-    url: string;
-    browser: string;
-    dB: string;
-    Sname: string;
+    applicationName?: string;
+    applicationURL?: string;
+    applicationBrowser?: string;
+    applicationDataBase?: string;
+    dataBaseURL?: string;
+    dataBaseUserName?: string;
+    dataBasePassword?: string;
 }
 
 export interface TestResultsReports {
