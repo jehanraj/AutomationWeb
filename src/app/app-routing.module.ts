@@ -11,6 +11,7 @@ import { AuthenticationGuard } from './shared/authentication.guard';
 import { TestdataFromdbMaintenanceComponent} from './testdata-fromdb-maintenance/testdata-fromdb-maintenance.component';
 import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
@@ -21,7 +22,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'testdatafromdb/maintenance', component: TestdataFromdbMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: 'testsuite/create', component: TestSuiteCreationComponent},
 { path: 'userappmapping/maintenance', component: UserappMappingMaintenanceComponent, canActivate: [AuthenticationGuard] },
-{ path: '', component: DashboardComponent, canActivate: [AuthenticationGuard] }];
+{ path: '', component: DashboardComponent, canActivate: [AuthenticationGuard] },
+{ path: 'userSignUp', component: UserSignUpComponent, canActivate: [AuthenticationGuard] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

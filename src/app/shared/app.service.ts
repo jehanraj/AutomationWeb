@@ -145,4 +145,8 @@ export class AppService {
 
     return modalRef.result;
   }
+
+  signUpUser(user: any) {
+    return this.http.post(environment.baseurl + 'userSignUp', user);
+  }
 }

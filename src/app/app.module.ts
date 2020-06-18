@@ -27,6 +27,9 @@ import { AlertsModule } from 'angular-alert-module';
 import { UserappMappingMaintenanceComponent } from './userapp-mapping-maintenance/userapp-mapping-maintenance.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
+import { ConfirmEqualValidatorDirective } from './confirm-equal-validator.directive';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TestSuiteCreationComponent,
     UserappMappingMaintenanceComponent,
     ConfirmationDialogComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserSignUpComponent,
+    ConfirmEqualValidatorDirective
   ],
   imports: [
     AppRoutingModule,

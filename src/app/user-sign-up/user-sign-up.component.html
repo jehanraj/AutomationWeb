@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-sm navbar-dark header-bg-blue navbar-default" role="navigation">
+    <div class="navbar-header">
+        <div class="collapse navbar-collapse navbar-brand"><a routerLink=""><img class="navbar-brand"
+                    src="../../assets/headericon.png" width="42" height="42"></a>Automated Testing Tool</div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-title mt-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Create account</h5>
+                    <form [formGroup]="signUpForm" (ngSubmit)="signup();">
+                        <div class="form-group">
+                            <input type="text" formControlName="userName" class="form-control" placeholder="User ID"
+                            style="text-transform:uppercase" 
+                                [ngClass]="{ 'is-invalid': submitted && formval.userName.errors }" />
+                            <div *ngIf="submitted && formval.userName.errors" class="invalid-feedback">
+                                <div *ngIf="formval.userName.errors.required">
+                                    User Name is required and must be a valid name
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" formControlName="userFullName" class="form-control" placeholder="Full Name"
+                                [ngClass]="{ 'is-invalid': submitted && formval.userFullName.errors }" />
+                            <div *ngIf="submitted && formval.userFullName.errors" class="invalid-feedback">
+                                <div *ngIf="formval.userFullName.errors.required">
+                                    Full Name is required and must be a valid name
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" formControlName="password" class="form-control"
+                                placeholder="Password"
+                                [ngClass]="{ 'is-invalid': submitted && formval.password.errors}" />
+                            <div *ngIf="submitted && formval.password.errors" class="invalid-feedback">
+                                <div ngClass="formval.password.errors.required">
+                                    Password is required.
+                                </div>
+                                <div *ngIf="formval.password.errors.minlength">Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" formControlName="confirmPassword" class="form-control"
+                                placeholder="Confirm Password"
+                                [ngClass]="{ 'is-invalid': submitted && formval.confirmPassword.errors }"
+                                appConfirmEqualValidator='password' />
+                            <div *ngIf="submitted && formval.confirmPassword.errors" class="invalid-feedback">
+                                <div *ngIf="formval.confirmPassword.errors.required">Confirm password is required</div>
+                                <div *ngIf="formval.confirmPassword.errors?.notEqual">Password Mismatch</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- <div *ngIf="submitEnable == true"> -->
+                                <button type="submit" class="btn btn-primary signin">Sign Up <span
+                                        class="arrowbtn"><span class="fa fa-arrow-right"></span></span></button>
+                            <!-- </div> -->
+                            <a href="/login" class="btn btn-link">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
