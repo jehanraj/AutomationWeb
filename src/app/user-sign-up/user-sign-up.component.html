@@ -13,8 +13,7 @@
                     <form [formGroup]="signUpForm" (ngSubmit)="signup();">
                         <div class="form-group">
                             <input type="text" formControlName="userName" class="form-control" placeholder="User ID"
-                            style="text-transform:uppercase" 
-                                [ngClass]="{ 'is-invalid': submitted && formval.userName.errors }" />
+                            [ngClass]="{ 'is-invalid': submitted && formval.userName.errors }" />
                             <div *ngIf="submitted && formval.userName.errors" class="invalid-feedback">
                                 <div *ngIf="formval.userName.errors.required">
                                     User Name is required and must be a valid name
