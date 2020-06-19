@@ -41,6 +41,8 @@
                                 </div>
                                 <div *ngIf="formval.password.errors.minlength">Password must be at least 6 characters
                                 </div>
+                                <div *ngIf="formval.password.errors.maxlength">Password must be not exceed 20 characters
+                                </div>
                             </div>
                         </div>
 
@@ -60,7 +62,7 @@
                                 <button type="submit" class="btn btn-primary signin">Sign Up <span
                                         class="arrowbtn"><span class="fa fa-arrow-right"></span></span></button>
                             <!-- </div> -->
-                            <a href="/login" class="btn btn-link">Cancel</a>
+                            <a href="/login" class="btn btn-link">Login here</a>
                         </div>
                     </form>
                 </div>

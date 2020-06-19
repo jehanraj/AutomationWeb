@@ -7,22 +7,40 @@
           <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
             <div class="form-group">
               <label for="inputEmail">User ID</label>
-              <input type="email" id="inputEmail" name="inputEmail" class="form-control" formControlName="userName" autofocus>
+              <!-- <input type="email" id="inputEmail" name="inputEmail" class="form-control" formControlName="userName" autofocus> -->
+              <input type="text" formControlName="userName" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && formControls.userName.errors }" />
+              <div *ngIf="submitted && formControls.userName.errors" class="invalid-feedback">
+                <div *ngIf="formControls.userName.errors.required">
+                  User Name is required
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="inputPassword">Password</label>
-              <input type="password" id="inputPassword"  name="inputPassword" class="form-control" formControlName="password">
+              <!-- <input type="password" id="inputPassword"  name="inputPassword" class="form-control" formControlName="password"> -->
+              <div class="form-group">
+                <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && formControls.password.errors}" />
+                <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
+                    <div ngClass="formControls.password.errors.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf="formControls.password.errors.minlength">Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="formControls.password.errors.maxlength">Password must be not exceed 20 characters
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="custom-control custom-checkbox mb-3">
               <input type="checkbox" class="custom-control-input" formControlName="rememberMe" id="rememberMe">
               <label class="custom-control-label" for="rememberMe">Remember password</label>
             </div>
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-            <!-- <button class="btn btn-lg btn btn-block text-uppercase" type="submit" (click)="router.navigate(['/userSignUp']);">Sign Up</button> -->
             <div class="row justify-content-center">
                 <p>new user? <a href="/userSignUp">create new account</a></p>
             </div>
-            <!-- <button class="btn btn-lg btn btn-block text-uppercase" type="submit" (click)="router.navigate(['/userSignUp']);">Sign Up</button> -->
           </form>
         </div>
       </div>

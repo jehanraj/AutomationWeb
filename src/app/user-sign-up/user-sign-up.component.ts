@@ -25,7 +25,7 @@ export class UserSignUpComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       userName: ['', Validators.required],
       userFullName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: ['', Validators.required]
     });
 
@@ -42,7 +42,7 @@ export class UserSignUpComponent implements OnInit {
         return;
       } else {
         this.app.signUpUser(this.signUpForm.value).subscribe(data => {
-          this.toastr.success('', 'User created successfully', {
+          this.toastr.success('', 'User created successfully.Please Map Applications @ UserAppMapping after login', {
             timeOut: 3000
           });
         }, (error) => {

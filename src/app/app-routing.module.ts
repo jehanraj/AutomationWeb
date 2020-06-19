@@ -23,7 +23,7 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'testsuite/create', component: TestSuiteCreationComponent},
 { path: 'userappmapping/maintenance', component: UserappMappingMaintenanceComponent, canActivate: [AuthenticationGuard] },
 { path: '', component: DashboardComponent, canActivate: [AuthenticationGuard] },
-{ path: 'userSignUp', component: UserSignUpComponent, canActivate: [AuthenticationGuard] }];
+{ path: 'userSignUp', component: UserSignUpComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

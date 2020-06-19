@@ -12,11 +12,17 @@ export class LoginComponent implements OnInit {
 
   private loginForm: FormGroup;
   private loginFailed = false;
+  submitted = false;
 
   constructor(private app: AppService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.buildForm();
+    //this.buildForm();
+    this.loginForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      rememberMe:['']
+    });
   }
 
   get formControls() { return this.loginForm.controls; }
@@ -30,6 +36,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
+
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    } 
     this.app.loginUser(this.loginForm.value).subscribe(data => {
       this.app.setUser(this.loginForm.value.userName);
       this.router.navigate(['/']);
@@ -41,5 +52,6 @@ export class LoginComponent implements OnInit {
       }
       this.loginFailed = true;
     });
+  
   }
 }
